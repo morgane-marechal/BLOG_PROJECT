@@ -5,11 +5,12 @@ class User
     private ?int $id = null;
     private ?string $prenom = null;
     private ?string $nom = null;
+    private ?string $password = null;
     private PDO $db;
 
     public function __construct()
     {
-        $db_dsn = 'mysql:host=localhost; dbname=blog-js';
+        $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
         $password_db = 'root';
 
@@ -36,8 +37,8 @@ class User
             $sql_exe->execute([
                 'prenom' => htmlspecialchars($prenom),
                 'nom' => htmlspecialchars($nom),
-                'password' => htmlspecialchars($password, PASSWORD_BCRYPT),
-                'rang' => htmlspecialchars($rangs),
+                'password' => password_hash($password, PASSWORD_BCRYPT),
+                'rangs' => htmlspecialchars($rangs),
             ]);
 
             if ($sql_exe) {
