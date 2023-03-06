@@ -1,7 +1,7 @@
 <header>
         <nav>
             <ul>
-                <li><a href=accueil.php>Accueil</a></li>
+                <li><a href=index.php>Accueil</a></li>
                 <li><a href=authentification.php>Authentification</a></li>
                 <?php if (isset($_SESSION['nom'])&& !empty($_SESSION['nom'])){?>
                 <li><a href=profil.php>Profil</span></a></li>
