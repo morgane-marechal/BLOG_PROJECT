@@ -71,6 +71,7 @@ class User
             if (password_verify($password, $hashed_password)) {
                 session_start();
                 $_SESSION['utilisateur'] = $prenom + $nom;
+                $_SESSION['id'] = $results['id'];
                 return json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
             }
         } else {

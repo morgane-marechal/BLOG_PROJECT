@@ -5,7 +5,7 @@ require_once 'src/User.php';
     puis on instancie un objet de la classe user et l'on appelle la fonction connection */
 
 if (isset($_POST['prenom']) && isset($_POST['nom']) && !empty($_POST['password'])) {
-    $prenom = htmlspecialchars($_POST['login']);
+    $prenom = htmlspecialchars($_POST['prenom']);
     $nom = htmlspecialchars($_POST['nom']);
     $password = htmlspecialchars($_POST['password']);
     $new_connection = new User();
