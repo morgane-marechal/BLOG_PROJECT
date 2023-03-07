@@ -56,21 +56,18 @@ class User
     {
         $sql = "SELECT * 
                 FROM utilisateurs
-                WHERE prenom = :prenon 
-                AND nom = :nom";
+                WHERE prenom = :prenom";
         $sql_exe = $this->db->prepare($sql);
         $sql_exe->execute([
             'prenom' => $prenom,
-            'nom' => $nom,
-            'password' => $password,
         ]);
         $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
-
+        var_dump($results);
         if ($results) {
             $hashed_password = $results['password'];
             if (password_verify($password, $hashed_password)) {
                 session_start();
-                $_SESSION['utilisateur'] = $prenom + $nom;
+                $_SESSION['utilisateur'] = $prenom;
                 $_SESSION['id'] = $results['id'];
                 return json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
             }
