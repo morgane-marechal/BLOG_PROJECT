@@ -23,7 +23,7 @@
     <label for="title"></label>
     <input id="article_title" name="article_title" type="text" placeholder="Titre ..." required>
     <label for="article_content"></label>
-    <input id="article_content" name="article_content" type="text" placeholder="Rédiger de l'article ..." required>
+    <input id="article_content" name="article_content" type="textarea" placeholder="Rédiger de l'article ..." required>
 
     <label for="pet-select">Catégories:</label>
         <select name="categorie" id="categorie">
