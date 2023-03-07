@@ -1,10 +1,9 @@
 <?php
 require_once 'src/User.php';
-if(isset($_POST) && !empty($_POST['prenom']) && !empty($_POST['nom'])) {
+if(isset($_POST) && !empty($_POST['login']) &&!empty($_POST['prenom']) && !empty($_POST['nom'])) {
     $user = 'user';
     $new_user = new User();
-    $new_user->register($_POST['prenom'], $_POST['nom'], $_POST['password'], $user);
-    var_dump($_POST['password']);
+    $new_user->register($_POST['login'], $_POST['prenom'], $_POST['nom'], $_POST['password'], $user);
     die(); // permet que le code s'arrête avant d'afficher le formulaire pour éviter de poser problème avec le json
 }
 
@@ -12,6 +11,8 @@ if(isset($_POST) && !empty($_POST['prenom']) && !empty($_POST['nom'])) {
 
 <h2 class="title-form">Inscription</h2>
 <form id="form-register" method="post">
+    <label for="login"></label>
+    <input id="login" name="login" type="text" placeholder="Login" required>
     <label for="prenom"></label>
     <input id="prenom" name="prenom" type="text" placeholder="Prénom" required>
     <label for="nom"></label>

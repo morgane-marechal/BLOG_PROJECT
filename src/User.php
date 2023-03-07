@@ -12,7 +12,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = '';
+        $password_db = 'root';
 
         try {
             $options =
@@ -28,13 +28,14 @@ class User
         }
     }
 
-    public function register($prenom, $nom, $password, $rangs)
+    public function register($login, $prenom, $nom, $password, $rangs)
     {
         if (!$this->verifUser()) {
-            $sql = "INSERT INTO utilisateurs (prenom, nom, password, rangs)
-                    VALUES (:prenom, :nom, :password, :rangs)";
+            $sql = "INSERT INTO utilisateurs (login, prenom, nom, password, rangs)
+                    VALUES (:login, :prenom, :nom, :password, :rangs)";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
+                'login' => htmlspecialchars($login),
                 'prenom' => htmlspecialchars($prenom),
                 'nom' => htmlspecialchars($nom),
                 'password' => password_hash($password, PASSWORD_BCRYPT),
@@ -52,14 +53,14 @@ class User
 
     }
 
-    public function connection($prenom, $nom, $password)
+    public function connection($login, $password)
     {
         $sql = "SELECT * 
                 FROM utilisateurs
-                WHERE prenom = :prenom ";
+                WHERE login = :login ";
         $sql_exe = $this->db->prepare($sql);
         $sql_exe->execute([
-            'prenom' => $prenom,
+            'login' => $login,
 
         ]);
         $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
@@ -68,8 +69,8 @@ class User
             $hashed_password = $results['password'];
             if (password_verify($password, $hashed_password)) {
                 session_start();
-                
                 $_SESSION['id'] = $results['id'];
+                $_SESSION['utilisateur'] = $results['login'];
                 return json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
             }
         } else {
@@ -79,17 +80,16 @@ class User
 
     public function verifUser()
     {
-        if ($_POST['prenom'] && $_POST['nom'] > 3) {
+        if ($_POST['prenom'] && $_POST['nom'] && $_POST['login'] > 3) {
             $prenom = htmlspecialchars($_POST['prenom']);
             $nom = htmlspecialchars($_POST['nom']);
+            $login = htmlspecialchars($_POST['login']);
             $sql = "SELECT * 
                     FROM utilisateurs
-                    WHERE prenom = :prenom
-                    AND nom = :nom";
+                    WHERE login = :login";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
-                'prenom' => $prenom,
-                'nom' => $nom
+                'login' => $login,
             ]);
             $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
 
