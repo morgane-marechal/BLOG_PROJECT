@@ -4,7 +4,7 @@
     <?php require('src/User.php'); ?>
 
     <?php 
-    if(!empty($_POST['title'])&& !empty($_POST['title']) && !empty($_POST['categorie'])) {
+    if(!empty($_POST['article_title'])&& !empty($_POST['article_content']) && !empty($_POST['categorie'])) {
         //pour avoir la date
         $mydate=getdate(date("U"));
         $myhour=date("H:i:s");
@@ -12,6 +12,8 @@
         $date="$mydate[year]/$mydate[mon]/$mydate[mday] $myhour";
         $contenu = htmlspecialchars($_POST['article_content']);
         $titre = htmlspecialchars($_POST['article_title']);
+        $categorie = htmlspecialchars($_POST['categorie']);
+        //$_SESSION['id']=1;
         $idUtilisateur = $_SESSION['id'];
         $newArticle = new Article();
         $newArticle->registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie);
@@ -23,7 +25,7 @@
     <label for="title"></label>
     <input id="article_title" name="article_title" type="text" placeholder="Titre ..." required>
     <label for="article_content"></label>
-    <input id="article_content" name="article_content" type="textarea" placeholder="Rédiger de l'article ..." required>
+    <textarea id="article_content" name="article_content" type="textarea" placeholder="Rédiger de l'article ..." required></textarea>
 
     <label for="pet-select">Catégories:</label>
         <select name="categorie" id="categorie">
