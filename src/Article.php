@@ -16,7 +16,7 @@ class Article
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = '';
+        $password_db = 'root';
 
         try {
             $options =
@@ -37,13 +37,12 @@ class Article
         $idUtilisateur=$_SESSION['id'];
         
             $sql = "INSERT INTO articles (contenu, titre, categorie, date, id_utilisateur)
-                    VALUES (:contenu, titre:, categorie:, date:, id_utilisateur:)";
+                    VALUES (:contenu, :titre, :categorie, now(), :id_utilisateur)";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
                 'contenu' => htmlspecialchars($contenu),
                 'titre' => htmlspecialchars($titre),
                 'categorie' => htmlspecialchars($categorie),
-                'date' => $date,
                 'id_utilisateur' => $idUtilisateur,
             ]);
 

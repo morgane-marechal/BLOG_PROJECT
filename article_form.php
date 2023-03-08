@@ -4,29 +4,27 @@
     <?php require('src/User.php'); ?>
 
     <?php 
-    if(!empty($_POST['title'])&& !empty($_POST['title']) && !empty($_POST['categorie'])) {
-        //pour avoir la date
-        $mydate=getdate(date("U"));
-        $myhour=date("H:i:s");
+    if(!empty($_POST['title']) && !empty($_POST['article_content'])&& !empty($_POST['categorie'])) {
         //valeur de la date pour le type sql datetime YYYY-MM-DD
-        $date="$mydate[year]/$mydate[mon]/$mydate[mday] $myhour";
         $contenu = htmlspecialchars($_POST['article_content']);
         $titre = htmlspecialchars($_POST['article_title']);
+        $categorie = htmlspecialchars($_POST['categorie-select']);
         $idUtilisateur = $_SESSION['id'];
         $newArticle = new Article();
-        $newArticle->registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie);
+        $newArticle->registerArticle($contenu, $titre, $categorie, $idUtilisateur);
     }
     ?>
 
 <h2 class="article-form">Rédaction d'un article</h2>
 <form id="form-register" method="post">
-    <label for="title"></label>
+    <label for="article_title"></label>
     <input id="article_title" name="article_title" type="text" placeholder="Titre ..." required>
     <label for="article_content"></label>
-    <input id="article_content" name="article_content" type="textarea" placeholder="Rédiger de l'article ..." required>
+    <textarea id="article_content" name="article_content" rows="5" cols="33" placeholder="Rédiger de l'article ..." required>
+    </textarea>
 
-    <label for="pet-select">Catégories:</label>
-        <select name="categorie" id="categorie">
+    <label for="categorie-select">Catégories:</label>
+        <select name="categorie-select" id="categorie">
             <option value="">--Choisir une catégorie pour l'article--</option>
             <option value="reconversion">Reconversion</option>
             <option value="autoformation">Autoformation</option>
