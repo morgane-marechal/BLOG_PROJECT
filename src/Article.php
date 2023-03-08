@@ -8,6 +8,7 @@ class Article
     private ?string $categorie= null;
     private ?DateTime $date = null;
     private ?int $idUtilisateur= null;
+    private $image= null;
     
     
     private PDO $db;
@@ -32,12 +33,12 @@ class Article
         }
     }
 
-    public function registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie)
+    public function registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie, $image)
     {
         $idUtilisateur=$_SESSION['id'];
         
-            $sql = "INSERT INTO articles (contenu, titre, categorie, date, id_utilisateur)
-                    VALUES (:contenu, :titre, :categorie, :date, :id_utilisateur)";
+            $sql = "INSERT INTO articles (contenu, titre, categorie, date, id_utilisateur, image)
+                    VALUES (:contenu, :titre, :categorie, :date, :id_utilisateur, :image)";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
                 'contenu' => htmlspecialchars($contenu),
@@ -45,6 +46,7 @@ class Article
                 'categorie' => htmlspecialchars($categorie),
                 'date' => $date,
                 'id_utilisateur' => $idUtilisateur,
+                'image' => $image,
             ]);
 
             if ($sql_exe) {
