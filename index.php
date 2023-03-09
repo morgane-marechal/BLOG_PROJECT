@@ -2,7 +2,8 @@
 
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="assets/style.css" />
         <meta http-equiv="x-ua-compatible" content="IE=edge" />
         <title>Accueil</title>
 </head>
