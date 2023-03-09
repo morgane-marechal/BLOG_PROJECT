@@ -12,7 +12,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = 'root';
+        $password_db = '';
 
         try {
             $options =

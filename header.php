@@ -1,15 +1,3 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
 <header>
     <nav class="nav">
         <div id="container-logo">
@@ -41,9 +29,7 @@
                         <li><a href=deconnexion.php>Déconnexion</span></a></li>
                     <?php } ?>
             </ul>
-
-
-    </nav>
+        </nav>
 </header>
 <script src="app/hamburger.js"></script>
 </body>
