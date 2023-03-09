@@ -36,14 +36,16 @@ class Article
     {
         $idUtilisateur=$_SESSION['id'];
         
-            $sql = "INSERT INTO articles (contenu, titre, categorie, date, id_utilisateur)
-                    VALUES (:contenu, :titre, :categorie, now(), :id_utilisateur)";
+            $sql = "INSERT INTO articles (contenu, titre, categorie, date, id_utilisateur, image)
+                    VALUES (:contenu, :titre, :categorie, :date, :id_utilisateur, :image)";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
                 'contenu' => htmlspecialchars($contenu),
                 'titre' => htmlspecialchars($titre),
                 'categorie' => htmlspecialchars($categorie),
+                'date' => $date,
                 'id_utilisateur' => $idUtilisateur,
+                'image' => $image,
             ]);
 
             if ($sql_exe) {
