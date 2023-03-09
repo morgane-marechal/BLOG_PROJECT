@@ -32,7 +32,7 @@ class Article
         }
     }
 
-    public function registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie)
+    public function registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie, $image)
     {
         $idUtilisateur=$_SESSION['id'];
         

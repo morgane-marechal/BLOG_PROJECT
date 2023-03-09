@@ -52,12 +52,13 @@ header {
     transition: 0.5s ease-in-out;
     width: 100%;
     text-align: center;
+    z-index: 100;
 }
 
 #container-list-nav {
     top: 25px;
     right: 10px;
-    position: fixed;
+    position: relative;
     height: 80px;
     margin: 0 10px;
 }
@@ -82,7 +83,7 @@ header {
 
 .burger.active {
     position: relative;
-    z-index: 100;
+    z-index: 101;
 }
 
 .burger.active .bar:nth-child(2){
@@ -109,9 +110,60 @@ header {
 }
 
 
+/* FORMULAIRE POST ARTICLE */
+#title-form-article {
+    padding-top: 20px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
 
+#color-bg {
+    width: 100%;
+    height: 30%;
+    background: #e5e0e0;
+    z-index: 0;
+}
 
+#form-article {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 30px auto;
 
+}
+
+#form-article > label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+#article_title, #article_content {
+    padding: 10PX;
+}
+
+#form-article > input::placeholder, textarea::placeholder {
+    font-family: 'Nunito', sans-serif;
+}
+textarea {
+    resize: vertical;
+}
+
+#categorie {
+    width: 70%;
+}
+#envoie {
+    align-self: center;
+    margin-top: 20px;
+    padding: 5px;
+    width: 100px;
+    border: 1px solid #ffffff;
+    border-radius: 2px;
+    background: #232419;
+    color: #ffffff;
+    cursor: pointer;
+}
 
 
 

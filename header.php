@@ -1,7 +1,7 @@
 <header>
     <nav class="nav">
         <div id="container-logo">
-            <img id="logo" src="assets/newway-logo.png" alt="logo">
+            <a href="index.php"><img id="logo" src="assets/newway-logo.png" alt="logo"></a>
         </div>
         <div id="container-list-nav">
             <div class="burger">
@@ -16,7 +16,7 @@
                     <?php if (isset($_SESSION['nom']) && !empty($_SESSION['nom'])) { ?>
                         <li><a href=profil.php>Profil</span></a></li>
                     <?php } ?>
-                    <li><a href=articles.php>Articles</a></li>
+                    <li><a href=article_form.php>Rédiger</a></li>
 
                     <?php if ((isset($_SESSION['rangs']) === ('admin' || 'moderateur')) && (!empty($_SESSION['rangs']))) { ?>
                         <li><a href=redaction.php>Rédaction</span></a></li>
