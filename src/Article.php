@@ -64,6 +64,15 @@ class Article
         echo "Le nom d'auteur est ".$auteur;
     }
 
+    public function getArticles()
+    {
+        $sql = "SELECT * FROM articles";
+        $sql_select = $this->db->prepare($sql);
+        $sql_select->execute();
+        $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        return json_encode($results);
+    }
+
 
 }
 

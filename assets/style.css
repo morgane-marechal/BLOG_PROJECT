@@ -166,9 +166,33 @@ textarea {
 }
 
 
+/* ARTICLES */
 
+.title-article {
+    margin: 20px 0;
+}
+.articles {
+    margin: 30px;
+}
+.title-article {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
 
+.container-image-article {
+    width: 100%;
+}
+.image-article{
+    max-width: 100%;
+    margin-bottom: 10px;
+}
 
+.contenu-article {
+    font-family: 'Nunito', sans-serif;
+    font-weight: lighter;
+    text-align: justify;
+    line-height: 1.5;
+}
 
 
 
