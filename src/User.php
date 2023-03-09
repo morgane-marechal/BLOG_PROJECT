@@ -12,13 +12,13 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = 'root';
+        $password_db = '';
 
         try {
             $options =
                 [
                     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // BE SURE TO WORK IN UTF8
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,//ERROR TYPE
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //ERROR TYPE
                     PDO::ATTR_EMULATE_PREPARES => false // FOR NO EMULATE PREPARE (SQL INJECTION)
                 ];
             $this->db = new PDO($db_dsn, $username, $password_db, $options);
@@ -50,7 +50,6 @@ class User
         } else {
             echo json_encode(['response' => 'not ok', 'echoue' => 'L\'utilisateur existe déjà']);
         }
-
     }
 
     public function connection($login, $password)
@@ -99,7 +98,6 @@ class User
                 return false;
             }
         }
-
     }
 
     public function isConnected()
@@ -109,6 +107,66 @@ class User
         } else {
             return false;
         }
+    }
+
+    public function getAllInfos()
+    {
+        $id = $_SESSION['id'];
+        $allInfo = $this->db->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+        $allInfo->execute([
+            'id' => $id,
+        ]);
+        $result = $allInfo->fetch(PDO::FETCH_ASSOC);
+        //echo var_dump($result);
+        $_SESSION['login'] = $result['login'];
+        $_SESSION['nom'] = $result['nom'];
+        $_SESSION['prenom'] = $result['prenom'];
+        $_SESSION['password'] = $result['password'];
+    }
+
+    //methode update login
+    public function setLogin($newlogin){
+        $login=$_SESSION['login']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
+        $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET login = '$newlogin' WHERE login = :login ");
+        $sqlupdate->execute([
+            'login' => $login,
+        ]);
+        $_SESSION['login'] = $newlogin;
+        return "Vous avez changé votre login mis à jour votre profil.<br>";
+    }
+
+    //methode update nom
+    public function setNom($newnom){
+        $nom=$_SESSION['nom']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
+        $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET nom = '$newnom' WHERE nom = :nom ");
+        $sqlupdate->execute([
+            'nom' => $nom,
+        ]);
+        $_SESSION['nom'] = $newnom;
+        return "Vous avez changer votre nom et mis à jour votre profil.<br>";
+    }
+
+    //methode update prenom
+    public function setPrenom($newprenom){
+        $prenom=$_SESSION['prenom']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
+        $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET prenom = '$newprenom' WHERE prenom = :prenom ");
+        $sqlupdate->execute([
+            'prenom' => $prenom,
+        ]);
+        $_SESSION['prenom'] = $newprenom;
+        return "Vous avez changer votre prenom et mis à jour votre profil.<br>";
+    }
+
+    //methode update mot de passe
+    public function setPassword($newpassword){
+        $password=$_SESSION['password'];
+        $newpassword = password_hash($password, PASSWORD_BCRYPT); 
+        $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET password = '$newpassword' WHERE password = :password ");
+        $sqlupdate->execute([
+            'password' => $password,
+        ]);
+        $_SESSION['password'] = $newpassword;
+        return "Vous avez changer votre mot de passe et mis à jour votre profil.<br>";
     }
 
     public function delete()
