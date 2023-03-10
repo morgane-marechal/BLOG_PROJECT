@@ -12,7 +12,7 @@ fetch('blog.php?articles=all')
             const newImage = document.createElement('img');
             const newDate = document.createElement('p');
             const paragraphe = document.createElement('p');
-            const buttonRead = document.createElement('input');
+            const buttonRead = document.createElement('button');
             const categorie = document.createElement('span');
 
             newTitle.classList.add('title-article');
@@ -26,7 +26,7 @@ fetch('blog.php?articles=all')
             newTitle.textContent = articles[i]['titre'];
             newDate.textContent = `publié le ${articles[i]['date']}` + ` par ${articles[i]['prenom']}` + ` ${articles[i]['nom']}`;
             newImage.src = './images/' + articles[i]['image'];
-            buttonRead.type = "checkbox";
+
             paragraphe.textContent = articles[i]['contenu'];
             categorie.textContent = articles[i]['categorie']
 

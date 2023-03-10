@@ -23,6 +23,11 @@ require('header.php');
 ?>
 
 <body>
+<div class="diagonal">
+    <div class="title-page">
+        <h1>Blog</h1>
+    </div>
+</div>
 <section class="articles">
 
 </section>

@@ -206,7 +206,32 @@ textarea {
     cursor: pointer;
 }
 
+/* TITLE PAGE */
 
+.diagonal {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 40px 0;
+    z-index: -1;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+.diagonal::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    background-color: #C8D857;
+    inset: 0;
+    transform: skewY(-5deg);
+}
+
+.title-page {
+    position: relative;
+    z-index: 1;
+}
 /* ARTICLES */
 
 .title-article {
@@ -262,6 +287,14 @@ textarea {
     border-radius: .25rem;
     cursor: pointer;
     margin-right: 5px;
+    background: white;
+}
+
+.button-read:hover {
+    background: #C8D857;
+    border: 1px solid #C8D857;
+    transition: 0.2s ease-in;
+
 }
 
 .button-read::before{
