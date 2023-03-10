@@ -66,17 +66,37 @@ class Article
 
     public function getArticles()
     {
-        $sql = "SELECT * 
+        $sql = "SELECT articles.id AS article_id, 
+                articles.titre AS article_titre, 
+                articles.contenu AS article_contenu, 
+                articles.image AS article_image, 
+                articles.categorie AS article_categorie, 
+                articles.date AS article_date, 
+                utilisateurs.id AS utilisateur_id, 
+                utilisateurs.nom AS utilisateur_nom, 
+                utilisateurs.prenom AS utilisateur_prenom
                 FROM articles
-                INNER JOIN utilisateurs
-                ON articles.id_utilisateur = utilisateurs.id";
+                INNER JOIN utilisateurs 
+                    ON articles.id_utilisateur = utilisateurs.id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
         return json_encode($results);
     }
 
+    public function getUniqueArticle($id)
+    {
+        $sql = "SELECT *
+            FROM articles
+            WHERE id = :id";
+        $sql_select = $this->db->prepare($sql);
+        $sql_select->bindValue(':id', $id, PDO::PARAM_INT);
+        $sql_select->execute();
+        $result = $sql_select->fetch(PDO::FETCH_ASSOC);
+        return json_encode($result);
+    }
 
 }
+
 
 ?>  
