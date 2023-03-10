@@ -2,7 +2,7 @@
 
 class Article
 {
-    private ?int $id = null;
+    public ?int $id = null;
     private ?string $contenu = null;
     private ?string $titre = null;
     private ?string $categorie= null;
@@ -77,7 +77,7 @@ class Article
                 utilisateurs.prenom AS utilisateur_prenom
                 FROM articles
                 INNER JOIN utilisateurs 
-                    ON articles.id_utilisateur = utilisateurs.id";
+                ON articles.id_utilisateur = utilisateurs.id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
@@ -92,11 +92,8 @@ class Article
         $sql_select = $this->db->prepare($sql);
         $sql_select->bindValue(':id', $id, PDO::PARAM_INT);
         $sql_select->execute();
-        $result = $sql_select->fetch(PDO::FETCH_ASSOC);
-        return json_encode($result);
+        return $sql_select->fetch(PDO::FETCH_ASSOC);
     }
 
 }
-
-
 ?>  

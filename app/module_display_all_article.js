@@ -12,7 +12,7 @@ fetch('blog.php?articles=all')
             const newImage = document.createElement('img');
             const newDate = document.createElement('p');
             const paragraphe = document.createElement('p');
-            const buttonRead = document.createElement('button');
+            const buttonRead = document.createElement('a');
             const categorie = document.createElement('span');
             console.log(articles[i])
 
@@ -30,6 +30,8 @@ fetch('blog.php?articles=all')
             newImage.src = './images/' + articles[i]['article_image'];
             paragraphe.textContent = articles[i]['article_contenu'];
             categorie.textContent = articles[i]['article_categorie']
+            buttonRead.href = `http://localhost:8888/blog-js/article.php?id=${articles[i]['article_id']}`;
+
 
             newArticle.appendChild(newTitle);
             newTitle.appendChild(newDate);

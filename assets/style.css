@@ -288,6 +288,11 @@ textarea {
     cursor: pointer;
     margin-right: 5px;
     background: white;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    color: black;
+
 }
 
 .button-read:hover {
@@ -299,10 +304,6 @@ textarea {
 
 .button-read::before{
     content: "Lire plus";
-}
-
-.button-read:checked{
-
 }
 
 /* DESKTOP */
