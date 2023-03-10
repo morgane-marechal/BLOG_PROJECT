@@ -24,6 +24,7 @@ header {
     justify-content: center;
     flex-direction: column;
     display: flex;
+
 }
 
 #menu-title {
@@ -49,7 +50,7 @@ header {
     background: black;
     top: 0;
     left: 0;
-    transition: 0.5s ease-in-out;
+    transition: 0.7s ease-in-out;
     width: 100%;
     text-align: center;
     z-index: 100;
@@ -186,24 +187,22 @@ textarea {
     max-width: 100%;
     margin-bottom: 10px;
 }
-
 .contenu-article {
     font-family: 'Nunito', sans-serif;
     font-weight: lighter;
     text-align: justify;
-    line-height: 1.5;
     margin-bottom: 10px;
+    --max-lines: 3;
+    --line-height: 1.4;
+    max-height: calc(var(--max-lines) * 1em *var(--line-height));
+    line-height: var(--line-height);
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
 }
-
 .date-article {
     font-family: 'Nunito', sans-serif;
     font-size: 13px;
     font-weight: 400;
+    padding: 2px 0;
 }
 
 .categorie-article {
@@ -213,6 +212,22 @@ textarea {
     padding: 6px;
     background: #cccccc;
     border-radius: 13px;
+}
+
+.button-read {
+    appearance: none;
+    border: 1px solid black;
+    padding: .5rem;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+.button-read::before{
+    content: "Lire plus";
+}
+
+.button-read:checked{
+
 }
 
 /* DESKTOP */

@@ -12,6 +12,7 @@ fetch('blog.php?articles=all')
             const newImage = document.createElement('img');
             const newDate = document.createElement('p');
             const paragraphe = document.createElement('p');
+            const buttonRead = document.createElement('input');
             const categorie = document.createElement('span');
 
             newTitle.classList.add('title-article');
@@ -19,11 +20,13 @@ fetch('blog.php?articles=all')
             paragraphe.classList.add('contenu-article');
             divImg.classList.add('container-image-article');
             newImage.classList.add('image-article');
+            buttonRead.classList.add('button-read');
             categorie.classList.add('categorie-article');
 
             newTitle.textContent = articles[i]['titre'];
             newDate.textContent = `publié le ${articles[i]['date']}` + ` par ${articles[i]['prenom']}` + ` ${articles[i]['nom']}`;
             newImage.src = './images/' + articles[i]['image'];
+            buttonRead.type = "checkbox";
             paragraphe.textContent = articles[i]['contenu'];
             categorie.textContent = articles[i]['categorie']
 
@@ -33,6 +36,11 @@ fetch('blog.php?articles=all')
             divImg.appendChild(newImage);
             newArticle.appendChild(paragraphe);
             containerArticles.appendChild(newArticle);
-            containerArticles.appendChild(categorie);
+            newArticle.appendChild(buttonRead);
+            newArticle.appendChild(categorie);
+
+            buttonRead.addEventListener('click', () => {
+                console.log(buttonRead);
+            })
         }
     });
