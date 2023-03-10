@@ -41,6 +41,46 @@ header {
     font-size: 30px;
 
 }
+
+.container-buttons-nav {
+    display: flex;
+    justify-content: center;
+}
+.btn-connection {
+    width: 100px;
+    border: 1px solid white;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 5px;
+    background: white;
+    cursor: pointer;
+}
+
+.btn-register {
+    width: 100px;
+    border: 1px solid white;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 5px;
+    background: black;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-connection:hover {
+    border: 1px solid white;
+    background: black;
+    color: white;
+    transition: 0.3s ease-in;
+}
+
+.btn-register:hover {
+    border: 1px solid black;
+    background: white;
+    color: black;
+    transition: 0.3s ease-in;
+}
+
 .ul_nav li {
     list-style: none;
     margin-bottom: 20px;
@@ -212,6 +252,7 @@ textarea {
     padding: 6px;
     background: #cccccc;
     border-radius: 13px;
+
 }
 
 .button-read {
@@ -220,6 +261,7 @@ textarea {
     padding: .5rem;
     border-radius: .25rem;
     cursor: pointer;
+    margin-right: 5px;
 }
 
 .button-read::before{
