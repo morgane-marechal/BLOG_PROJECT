@@ -1,12 +1,15 @@
 <?php
 
-class Article
+#[AllowDynamicProperties] class Article
 {
     public ?int $id = null;
-    private ?string $contenu = null;
-    private ?string $titre = null;
-    private ?string $categorie= null;
-    private ?string $date = null;
+    public ?string $nom = null;
+    public ?string $prenom = null;
+    public ?string $contenu = null;
+    public ?string $titre = null;
+    public ?string $categorie= null;
+    public ?string $date = null;
+    public $image;
     private ?string $idUtilisateur= null;
     
     
@@ -55,14 +58,6 @@ class Article
             }
     }
 
-    public function getAuteur()
-    {
-        $allInfo = $this->db -> prepare("SELECT * FROM utilisateurs WHERE id = $this->idUtilisateur");
-        $allInfo -> execute();
-        $result = $allInfo->fetch(PDO::FETCH_ASSOC);
-        $auteur=$result ['prenom']." ".$result ['nom'];
-        echo "Le nom d'auteur est ".$auteur;
-    }
 
     public function getArticles()
     {
@@ -86,14 +81,28 @@ class Article
 
     public function getUniqueArticle($id)
     {
-        $sql = "SELECT *
+        $sql = "SELECT articles.*, utilisateurs.prenom, utilisateurs.nom
             FROM articles
-            WHERE id = :id";
+            INNER JOIN utilisateurs 
+            ON articles.id_utilisateur = utilisateurs.id
+            WHERE articles.id = :id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->bindValue(':id', $id, PDO::PARAM_INT);
         $sql_select->execute();
-        return $sql_select->fetch(PDO::FETCH_ASSOC);
+        $result = $sql_select->fetch(PDO::FETCH_ASSOC);
+        $article = new Article();
+        $article->id = $result['id'];
+        $article->nom = $result['nom'];
+        $article->prenom = $result['prenom'];
+        $article->titre = $result['titre'];
+        $article->image = $result['image'];
+        $article->contenu = $result['contenu'];
+        $article->categorie = $result['categorie'];
+        $article->date = $result['date'];
+        $article->idUtilisateur = $result['id_utilisateur'];
+        return $article;
     }
+
 
 }
 ?>  

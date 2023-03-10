@@ -1,11 +1,11 @@
 <?php
 require_once ('src/Article.php');
-$article = new Article();
 if (isset($_GET['id'])) {
-    $arrayArticle = $article->getUniqueArticle($_GET['id']);
-    $article->id = $arrayArticle['id'];
-    var_dump($arrayArticle['id']);
+    $article = new Article();
+    $article = $article->getUniqueArticle($_GET['id']);
+
 }
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -22,8 +22,22 @@ if (isset($_GET['id'])) {
 require('header.php');
 ?>
 <section class="article">
+    <article>
+        <div id="container-categorie">
+            <span id="categorie-unique-article"><?= $article->categorie ?></span>
+        </div>
+        <div id="container-titre">
+            <h1><?= $article->titre ?></h1>
+        </div>
+        <div id="container-image">
+            <img id="image-article-unique" src="./images/<?=$article->image?>">
+        </div>
+            <div id="contenu-unique-article"><?= $article->contenu ?></div>
+        <div id="container-info">
+            <span id="info-unique-article">Publié le <?= $article->date ?> par <?= $article->prenom ?> <?= $article->nom ?></span>
+        </div>
 
-    <h1><?= $arrayArticle['titre'] ?></h1>
+    </article>
 
 </section>
 </body>

@@ -302,8 +302,60 @@ textarea {
 
 }
 
-.button-read::before{
+.button-read::before {
     content: "Lire plus";
+}
+
+/* ARTICLE UNIQUE */
+#container-categorie {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#categorie-unique-article {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .7rem;
+}
+
+#container-titre {
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+    margin: 1rem 0;
+}
+
+#contenu-unique-article {
+    font-family: 'Nunito', sans-serif;
+    margin: 0 30px;
+    text-align: justify;
+    line-height: 1.4;
+}
+
+#container-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#image-article-unique {
+    max-width: 350px;
+}
+
+#container-info {
+    margin: 10px 30px;
+    display: flex;
+    font-family: 'Nunito', sans-serif;
+    font-weight: lighter;
+    font-style: italic;
+}
+#info-unique-article {
+
 }
 
 /* DESKTOP */
