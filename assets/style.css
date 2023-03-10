@@ -192,9 +192,28 @@ textarea {
     font-weight: lighter;
     text-align: justify;
     line-height: 1.5;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
+.date-article {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
 
+.categorie-article {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 6px;
+    background: #cccccc;
+    border-radius: 13px;
+}
 
 /* DESKTOP */
 /*.nav {*/

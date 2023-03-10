@@ -66,7 +66,10 @@ class Article
 
     public function getArticles()
     {
-        $sql = "SELECT * FROM articles";
+        $sql = "SELECT * 
+                FROM articles
+                INNER JOIN utilisateurs
+                ON articles.id_utilisateur = utilisateurs.id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
