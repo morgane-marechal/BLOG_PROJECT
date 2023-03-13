@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ('src/Article.php');
 $article = new Article();
 if (isset($_GET['articles']) && $_GET['articles'] === 'all'){

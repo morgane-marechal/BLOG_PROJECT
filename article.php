@@ -1,8 +1,10 @@
 <?php
+session_start();
 require_once ('src/Article.php');
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
+
 
 }
 
@@ -44,6 +46,7 @@ require('header.php');
     <div id="container-commentaires">
         <?php if(!isset($_SESSION['nom']) && !isset($_SESSION['prenom'])):?>
         <?= "Connectez-vous pour laisser un commentaire" ?>
+        <?= $_SESSION['nom'] ?>
         <?php else: ?>
         <?php "<input type='text'>"?>
         <?php endif; ?>
