@@ -1,8 +1,5 @@
 <?php
 
-
- class Article
-
 require_once ("src/User.php");
 #[AllowDynamicProperties] class Article
 

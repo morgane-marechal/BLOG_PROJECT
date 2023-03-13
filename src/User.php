@@ -14,7 +14,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = '';
+        $password_db = 'root';
 
         try {
             $options =
@@ -170,10 +170,6 @@ class User
         $_SESSION['password'] = $newpassword;
         return "Vous avez changé votre mot de passe et mis à jour votre profil.<br>";
     }
-    //display all users for admin
-
-
-    public function displayUsers()
 
     //methode update bio
     public function setBio(?string $bio): ?string
@@ -278,23 +274,6 @@ class User
         
         }
     }
-
-        public function delete(int $iduser){
-            $delete= $this->db ->prepare("DELETE from utilisateurs WHERE id = '$iduser'");
-            $delete->execute();
-        }
-    
-        public function update(int $iduser, $newrang){
-            $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rang = '$newrang' WHERE id = :iduser ");
-            $sqlupdate->execute([
-                'iduser' => $iduser,
-            ]);
-
-        }
-       
-    
-
-
     public function deconnect()
     {
         unset($_SESSION['utilisateur']);
