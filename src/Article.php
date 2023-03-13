@@ -92,7 +92,6 @@ require_once ("src/User.php");
         $sql_select->bindValue(':id', $id, PDO::PARAM_INT);
         $sql_select->execute();
         $result = $sql_select->fetch(PDO::FETCH_ASSOC);
-        var_dump($result);
 
         // On instancie un nouvel objet de la classe Article nommé $article et on lui assigne les valeurs de $result (qui est un tableau associatif)
         $article = new Article();
