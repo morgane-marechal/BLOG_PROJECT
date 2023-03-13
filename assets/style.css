@@ -206,11 +206,39 @@ textarea {
     cursor: pointer;
 }
 
+/* TITLE PAGE */
 
+.diagonal {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 40px 0;
+    z-index: -1;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+.diagonal::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    background-color: #C8D857;
+    inset: 0;
+    transform: skewY(-5deg);
+}
+
+.title-page {
+    position: relative;
+    z-index: 1;
+}
 /* ARTICLES */
 
+article {
+    margin-top: 40px;
+}
 .title-article {
-    margin: 20px 0;
+
 }
 .articles {
     margin: 30px;
@@ -231,7 +259,7 @@ textarea {
     font-family: 'Nunito', sans-serif;
     font-weight: lighter;
     text-align: justify;
-    margin-bottom: 10px;
+    margin: 10px 0;
     --max-lines: 3;
     --line-height: 1.4;
     max-height: calc(var(--max-lines) * 1em *var(--line-height));
@@ -262,14 +290,89 @@ textarea {
     border-radius: .25rem;
     cursor: pointer;
     margin-right: 5px;
+    background: white;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    color: black;
+
 }
 
-.button-read::before{
+.button-read:hover {
+    background: #C8D857;
+    border: 1px solid #C8D857;
+    transition: 0.2s ease-in;
+
+}
+
+.button-read::before {
     content: "Lire plus";
 }
 
-.button-read:checked{
+/* ARTICLE UNIQUE */
+#container-categorie {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
 
+#categorie-unique-article {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .7rem;
+}
+
+#container-titre {
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+    margin: 1rem 0;
+}
+
+#contenu-unique-article {
+    font-family: 'Nunito', sans-serif;
+    margin: 0 30px;
+    text-align: justify;
+    line-height: 1.7;
+}
+
+#container-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#image-article-unique {
+    max-width: 350px;
+}
+
+#container-info {
+    margin: 20px 30px;
+    display: flex;
+    font-family: 'Nunito', sans-serif;
+    font-weight: lighter;
+    font-style: italic;
+    justify-content: end;
+}
+#info-unique-article {
+
+}
+
+#auteur {
+    font-family: 'Nunito', sans-serif;
+    margin: 10px 30px;
+    text-align: justify;
+    line-height: 1.7;
+    border: 2px solid black;
+    padding: 30px 20px;
+}
+
+#titre-auteur {
+    margin-bottom: 20px;
 }
 
 /* DESKTOP */

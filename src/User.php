@@ -6,13 +6,15 @@ class User
     private ?string $prenom = null;
     private ?string $nom = null;
     private ?string $password = null;
+    private ?string $bio = "Aucune biographie n'a été renseignée";
+
     private PDO $db;
 
     public function __construct()
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = '';
+        $password_db = 'root';
 
         try {
             $options =
@@ -117,7 +119,6 @@ class User
             'id' => $id,
         ]);
         $result = $allInfo->fetch(PDO::FETCH_ASSOC);
-        //echo var_dump($result);
         $_SESSION['login'] = $result['login'];
         $_SESSION['nom'] = $result['nom'];
         $_SESSION['prenom'] = $result['prenom'];
@@ -169,6 +170,7 @@ class User
         return "Vous avez changer votre mot de passe et mis à jour votre profil.<br>";
     }
 
+<<<<<<< HEAD
     //display all users for admin
 
     public function displayUsers()
@@ -223,6 +225,19 @@ class User
     
 
     public function deconnect()
+=======
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): void
+    {
+        $this->bio = $bio;
+    }
+
+    public function delete()
+>>>>>>> 4e87c0097a9c191685610bde8ec3e99b944c75af
     {
         unset($_SESSION['utilisateur']);
         session_destroy();

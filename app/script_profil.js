@@ -2,8 +2,6 @@ const place = document.getElementById("profil-form-place");
 
 
 function callForm(){
-    
-
    fetch('form_profil.php')
         .then(response => {
             return response.text();
@@ -22,7 +20,6 @@ function callForm(){
                         return response.text();
                     })
                     .then(() => {
-                        
                         callForm();
                     })
             })

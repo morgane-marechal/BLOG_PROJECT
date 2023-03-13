@@ -19,8 +19,8 @@
                 <li><a href="article_form.php">Rédiger</a></li>
                 <li><a href="blog.php">Blog</a></li>
                 <div class="container-buttons-nav">
-                    <a href="connexion.php"><button class="btn-register">S'inscrire</button></a>
-                    <a  href="inscription.php"><button class="btn-connection">Se connecter</button></a>
+                    <a href="inscription.php"><button class="btn-register">S'inscrire</button></a>
+                    <a  href="connexion.php"><button class="btn-connection">Se connecter</button></a>
                 </div>
 
                 <?php if ((isset($_SESSION['rangs']) === ('admin' || 'moderateur')) && (!empty($_SESSION['rangs']))) { ?>
