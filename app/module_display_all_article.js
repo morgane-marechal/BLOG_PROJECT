@@ -32,10 +32,9 @@ fetch('blog.php?articles=all')
             categorie.textContent = articles[i]['article_categorie']
             buttonRead.href = `http://localhost:8888/blog-js/article.php?id=${articles[i]['article_id']}`;
 
-
+            newArticle.appendChild(divImg)
             newArticle.appendChild(newTitle);
             newTitle.appendChild(newDate);
-            newArticle.appendChild(divImg);
             divImg.appendChild(newImage);
             newArticle.appendChild(paragraphe);
             containerArticles.appendChild(newArticle);

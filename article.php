@@ -36,8 +36,19 @@ require('header.php');
         <div id="container-info">
             <span id="info-unique-article">Publié le <?= $article->date ?> par <?= $article->prenom ?> <?= $article->nom ?></span>
         </div>
-
     </article>
+    <div id="auteur">
+        <h3 id="titre-auteur">A propos de l'auteur</h3>
+        <p>L'auteur est un jeune écrivain et journaliste s'intéressant particulièrement à l'écologie. </p>
+    </div>
+    <div id="container-commentaires">
+        <?php if(!isset($_SESSION['nom']) && !isset($_SESSION['prenom'])):?>
+        <?= "Connectez-vous pour laisser un commentaire" ?>
+        <?php else: ?>
+        <?php "<input type='text'>"?>
+        <?php endif; ?>
+
+    </div>
 
 </section>
 </body>

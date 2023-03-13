@@ -234,8 +234,11 @@ textarea {
 }
 /* ARTICLES */
 
+article {
+    margin-top: 40px;
+}
 .title-article {
-    margin: 20px 0;
+
 }
 .articles {
     margin: 30px;
@@ -256,7 +259,7 @@ textarea {
     font-family: 'Nunito', sans-serif;
     font-weight: lighter;
     text-align: justify;
-    margin-bottom: 10px;
+    margin: 10px 0;
     --max-lines: 3;
     --line-height: 1.4;
     max-height: calc(var(--max-lines) * 1em *var(--line-height));
@@ -334,7 +337,7 @@ textarea {
     font-family: 'Nunito', sans-serif;
     margin: 0 30px;
     text-align: justify;
-    line-height: 1.4;
+    line-height: 1.7;
 }
 
 #container-image {
@@ -348,14 +351,28 @@ textarea {
 }
 
 #container-info {
-    margin: 10px 30px;
+    margin: 20px 30px;
     display: flex;
     font-family: 'Nunito', sans-serif;
     font-weight: lighter;
     font-style: italic;
+    justify-content: end;
 }
 #info-unique-article {
 
+}
+
+#auteur {
+    font-family: 'Nunito', sans-serif;
+    margin: 10px 30px;
+    text-align: justify;
+    line-height: 1.7;
+    border: 2px solid black;
+    padding: 30px 20px;
+}
+
+#titre-auteur {
+    margin-bottom: 20px;
 }
 
 /* DESKTOP */
