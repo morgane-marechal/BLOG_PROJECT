@@ -14,7 +14,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = 'root';
+        $password_db = '';
 
         try {
             $options =
@@ -211,10 +211,10 @@ class User
             //'id' => $id,
         ]);
         $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
-        echo var_dump($result);
+        //echo var_dump($result);
         for ($i = 0; $i <= (count($result)-1); $i++) {
         echo 
-        "<div id='user".$result[$i]['id']." class='user' style='background-color:blue;'>
+        "<div id='user".$result[$i]['id']." class='user'>
         <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
         <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
         <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
@@ -231,7 +231,7 @@ class User
         <button type='submit' class='change_utilisateur' id='".$result[$i]['id']."' name='update' href=admin.php?update=".$result[$i]['id'].">Modifier</button>
         </form>
         
-            <button type='submit' class='supprime_utilisateur' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
+            <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
         
 
         </div>";

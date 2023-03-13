@@ -1,7 +1,8 @@
 <?php
 
-require_once ("src/User.php");
-#[AllowDynamicProperties] class Article
+
+#[AllowDynamicProperties]
+class Article
 
 {
     public ?int $id = null;
@@ -21,7 +22,7 @@ require_once ("src/User.php");
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = 'root';
+        $password_db = '';
 
         try {
             $options =

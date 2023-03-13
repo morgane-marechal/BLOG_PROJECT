@@ -68,9 +68,6 @@ deleteEvent();
 
 
 
-                // deleteEvent();
-        })
-}
 
 
 //------------- pour update avec GET -----------------------
