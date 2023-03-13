@@ -14,7 +14,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = '';
+        strpos($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false ? $password_db = 'root' : $password_db = '';
 
         try {
             $options =
