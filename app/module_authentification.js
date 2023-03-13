@@ -4,10 +4,10 @@ const inscriptionButton = document.getElementById("inscription-button");
 
 inscriptionButton.addEventListener("click", async() => {
    await fetch('inscription.php')
-        .then(response => {
+        .then((response) => {
             return response.text();
         })
-        .then(form => {
+        .then((form) => {
             formAuth.innerHTML = form;
             let submit = document.getElementById("envoie");
             let registerForm = document.getElementById("form-register");

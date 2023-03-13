@@ -19,7 +19,7 @@ require_once ("src/User.php");
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = '';
+        $password_db = 'root';
 
         try {
             $options =
