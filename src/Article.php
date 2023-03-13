@@ -1,6 +1,6 @@
 <?php
 
-#[AllowDynamicProperties] class Article
+ class Article
 {
     public ?int $id = null;
     public ?string $nom = null;

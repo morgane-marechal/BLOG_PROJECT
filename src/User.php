@@ -14,7 +14,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = 'root';
+        $password_db = '';
 
         try {
             $options =
@@ -169,8 +169,6 @@ class User
         $_SESSION['password'] = $newpassword;
         return "Vous avez changer votre mot de passe et mis à jour votre profil.<br>";
     }
-
-<<<<<<< HEAD
     //display all users for admin
 
     public function displayUsers()
@@ -181,15 +179,15 @@ class User
             //'id' => $id,
         ]);
         $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
-        echo var_dump($result);
+        //echo var_dump($result);
         for ($i = 0; $i <= (count($result)-1); $i++) {
         echo 
-        "<div id='user".$result[$i]['id']." class='user' style='background-color:blue;'>
+        "<div id='user".$result[$i]['id']." class='user' >
         <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
         <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
         <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
         <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
-        <form id='form_role' method='get'>
+        <form id='form_role' method='post'>
             <label for='role'>Rôle:</label>
             <select name='role' id='role'>
                 <option value=''>Nouveau rôle :</option>
@@ -197,11 +195,10 @@ class User
                 <option value='moderateur'>Moderateur</option>
                 <option value='administrateur'>Administrateur</option>
             </select>
-            <select name=idUser value='".$result[$i]['id']."'></select>
-        <button type='submit' class='change_utilisateur' id='".$result[$i]['id']."' name='update' href=admin.php?update=".$result[$i]['id'].">Modifier</button>
+        <button type='submit' class='change_utilisateur' id='".$result[$i]['id']."' name='envoie' href=admin.php?update=".$result[$i]['id'].">Modifier</button>
         </form>
         
-            <button type='submit' class='supprime_utilisateur' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
+        <button  class='del' id='".$result[$i]['id']."' name='delete' <a class='delete' href=admin_users.php?delete=".$result[$i]['id']."></a>Supprimer</button>
         
 
         </div>";
@@ -209,8 +206,8 @@ class User
         }
     }
 
-        public function delete(int $iduser){
-            $delete= $this->db ->prepare("DELETE from utilisateurs WHERE id = '$iduser'");
+        public function delete(int $idDelete){
+            $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
             $delete->execute();
         }
     
@@ -225,19 +222,6 @@ class User
     
 
     public function deconnect()
-=======
-    public function getBio(): ?string
-    {
-        return $this->bio;
-    }
-
-    public function setBio(?string $bio): void
-    {
-        $this->bio = $bio;
-    }
-
-    public function delete()
->>>>>>> 4e87c0097a9c191685610bde8ec3e99b944c75af
     {
         unset($_SESSION['utilisateur']);
         session_destroy();
