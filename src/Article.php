@@ -1,6 +1,11 @@
 <?php
+
+
+ class Article
+
 require_once ("src/User.php");
 #[AllowDynamicProperties] class Article
+
 {
     public ?int $id = null;
     public ?string $nom = null;
