@@ -2,12 +2,12 @@
 
 class User
 {
-    private ?int $id = null;
-    private ?string $prenom = null;
-    private ?string $nom = null;
-    private ?string $password = null;
-    private ?string $bio = "Aucune biographie n'a été renseignée";
-
+    public ?int $id = null;
+    public ?string $login = null;
+    public ?string $prenom = null;
+    public ?string $nom = null;
+    public ?string $password = null;
+    public ?string $bio = null;
     private PDO $db;
 
     public function __construct()
@@ -30,11 +30,11 @@ class User
         }
     }
 
-    public function register($login, $prenom, $nom, $password, $rangs)
+    public function register($login, $prenom, $nom, $password, $rangs, $bio)
     {
         if (!$this->verifUser()) {
-            $sql = "INSERT INTO utilisateurs (login, prenom, nom, password, rangs)
-                    VALUES (:login, :prenom, :nom, :password, :rangs)";
+            $sql = "INSERT INTO utilisateurs (login, prenom, nom, password, rangs, bio)
+                    VALUES (:login, :prenom, :nom, :password, :rangs, :bio)";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
                 'login' => htmlspecialchars($login),
@@ -42,11 +42,12 @@ class User
                 'nom' => htmlspecialchars($nom),
                 'password' => password_hash($password, PASSWORD_BCRYPT),
                 'rangs' => htmlspecialchars($rangs),
+                'bio' => htmlspecialchars($bio),
             ]);
 
             if ($sql_exe) {
                 echo json_encode(['response' => 'ok', 'reussite' => 'Inscription réussie.']);
-            } elseif ($sql_exe) {
+            } else {
                 echo json_encode(['response' => 'not ok', 'echoue' => 'L\'inscription a échoué.']);
             }
         } else {
@@ -75,7 +76,7 @@ class User
                 return json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
             }
         } else {
-            return json_encode(['reponse' => 'not ok', 'echec' => 'connexion refusée']);
+            return json_encode(['response' => 'not ok', 'echec' => 'connexion refusée']);
         }
     }
 
@@ -167,17 +168,25 @@ class User
             'password' => $password,
         ]);
         $_SESSION['password'] = $newpassword;
-        return "Vous avez changer votre mot de passe et mis à jour votre profil.<br>";
+        return "Vous avez changé votre mot de passe et mis à jour votre profil.<br>";
     }
 
-    public function getBio(): ?string
+    //methode update bio
+    public function setBio(?string $bio): ?string
+    {
+        $newBio = htmlspecialchars($bio);
+        $sql = "UPDATE utilisateurs SET bio = '$newBio' WHERE bio = :bio";
+        $sql_exe = $this->db->prepare($sql);
+        $sql_exe->execute([
+            'bio'=> $newBio,
+        ]);
+        return $sql_exe->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // methode pour afficher la bio
+    public function getBio()
     {
         return $this->bio;
-    }
-
-    public function setBio(?string $bio): void
-    {
-        $this->bio = $bio;
     }
 
     public function delete()
@@ -186,4 +195,25 @@ class User
         session_destroy();
         header('Location: index.php');
     }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     * @return User
+     */
+    public function setId(?int $id): User
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+
+
 }

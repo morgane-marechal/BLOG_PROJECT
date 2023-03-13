@@ -1,5 +1,5 @@
 <?php
-
+require_once ("src/User.php");
 #[AllowDynamicProperties] class Article
 {
     public ?int $id = null;
@@ -9,10 +9,10 @@
     public ?string $titre = null;
     public ?string $categorie= null;
     public ?string $date = null;
+     public ?User $author = null;
     public $image;
     private ?string $idUtilisateur= null;
-    
-    
+
     private PDO $db;
 
     public function __construct()
@@ -79,9 +79,9 @@
         return json_encode($results);
     }
 
-    public function getUniqueArticle($id)
+    public function getUniqueArticle($id): Article
     {
-        $sql = "SELECT articles.*, utilisateurs.prenom, utilisateurs.nom
+        $sql = "SELECT articles.*, utilisateurs.*, articles.id AS id
             FROM articles
             INNER JOIN utilisateurs 
             ON articles.id_utilisateur = utilisateurs.id
@@ -90,7 +90,14 @@
         $sql_select->bindValue(':id', $id, PDO::PARAM_INT);
         $sql_select->execute();
         $result = $sql_select->fetch(PDO::FETCH_ASSOC);
+        var_dump($result);
+
+        // On instancie un nouvel objet de la classe Article nommé $article et on lui assigne les valeurs de $result (qui est un tableau associatif)
         $article = new Article();
+        $article->author = new User();
+        $article->author->id = $result['id_utilisateur'];
+        $article->author->login = $result['login'];
+        $article->author->bio = $result['bio'];
         $article->id = $result['id'];
         $article->nom = $result['nom'];
         $article->prenom = $result['prenom'];
@@ -102,7 +109,6 @@
         $article->idUtilisateur = $result['id_utilisateur'];
         return $article;
     }
-
 
 }
 ?>  
