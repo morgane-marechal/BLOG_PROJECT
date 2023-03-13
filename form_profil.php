@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php require_once 'src/User.php';
 $bio = new User();
+
 ?>
 
 
@@ -24,9 +25,8 @@ $bio = new User();
     <input type="text" name="nom" id="nom" placeholder="<?php echo $_SESSION['nom'] ?>" minlength="3">
     <label for="prenom">Prénom</label>
     <input type="text" name="prenom" id="prenom" placeholder="<?php echo $_SESSION['prenom'] ?>" minlength="3">
-    <label for="biographie">Biographie</label>
-    <label>
-        <textarea name="biographie" placeholder="<?= $bio->getBio()?>"></textarea>
+    <label for="biographie">Biographie
+        <textarea name="biographie" placeholder="<?=$bio->getBio()?>"></textarea>
     </label>
     <label for="newpassword">Mot de passe</label>
     <input type="password" name="newpassword" id="newpassword" placeholder="mot de passe" minlength="3">
@@ -41,7 +41,6 @@ $bio = new User();
     
     $new_info = new User();
     $new_info->getAllInfos();
-
 
     if((!empty($_POST)) && $_POST['newlogin']){
         $newlogin = htmlspecialchars($_POST['newlogin']);
@@ -59,6 +58,12 @@ $bio = new User();
         $newnom = htmlspecialchars($_POST['nom']);
         $updateNom = new User();
         $updateNom->setNom($newnom);
+    }
+
+    if((!empty($_POST)) && $_POST['biographie']){
+        $newBio = htmlspecialchars($_POST['biographie']);
+        $updateBio = new User();
+        $bio->setBio($newBio);
     }
 
     if((!empty($_POST)) && $_POST['newpassword']){

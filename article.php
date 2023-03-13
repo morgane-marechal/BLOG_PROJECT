@@ -1,12 +1,13 @@
 <?php
 session_start();
 require_once ('src/Article.php');
+require_once ('src/User.php');
+
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
-
-
 }
+
 
 ?>
 <!doctype html>
@@ -34,21 +35,22 @@ require('header.php');
         <div id="container-image">
             <img id="image-article-unique" src="./images/<?=$article->image?>">
         </div>
-            <div id="contenu-unique-article"><?= $article->contenu ?></div>
+        <div id="contenu-unique-article"><?= $article->contenu ?></div>
         <div id="container-info">
             <span id="info-unique-article">Publié le <?= $article->date ?> par <?= $article->prenom ?> <?= $article->nom ?></span>
         </div>
     </article>
     <div id="auteur">
         <h3 id="titre-auteur">A propos de l'auteur</h3>
-        <p>L'auteur est un jeune écrivain et journaliste s'intéressant particulièrement à l'écologie. </p>
+        <p><?= $article->author->bio ?></p>
+
     </div>
     <div id="container-commentaires">
         <?php if(!isset($_SESSION['nom']) && !isset($_SESSION['prenom'])):?>
-        <?= "Connectez-vous pour laisser un commentaire" ?>
-        <?= $_SESSION['nom'] ?>
+            <?= "Connectez-vous pour laisser un commentaire" ?>
+            <?= $_SESSION['nom'] ?>
         <?php else: ?>
-        <?php "<input type='text'>"?>
+            <?php "<input type='text'>"?>
         <?php endif; ?>
 
     </div>
@@ -56,4 +58,3 @@ require('header.php');
 </section>
 </body>
 </html>
-

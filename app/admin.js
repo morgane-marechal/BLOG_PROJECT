@@ -1,4 +1,6 @@
+
 console.log("VERIF CONNEXION JS")
+
 const displayUser = document.getElementById("user-place");
 const btnUser = document.getElementById("utilisateurs-button");
 
@@ -16,6 +18,7 @@ function fetchDisplay(){
             .then((content) => {
                 displayUser.innerHTML=content
                 // updateEvent(); mettre fonction pour ajouter event listener
+
                 deleteEvent();
         })
 }
@@ -62,6 +65,12 @@ let btnTest=document.getElementsByClassName(".del");
    
 deleteEvent();
 
+
+
+
+                // deleteEvent();
+        })
+}
 
 
 //------------- pour update avec GET -----------------------

@@ -5,6 +5,7 @@
 <?php 
 
 
+
     echo var_dump($_SESSION);
      $new_display = new User();
      $new_display->displayUsers();
@@ -23,6 +24,17 @@ if (isset($_GET['delete'])){
     die();
 }
     
+     $new_display = new User();
+     $new_display->displayUsers();
+   
+
+     if (!empty($_POST['role'])) {
+        $role = htmlspecialchars($_POST['role']);
+        $idUser = htmlspecialchars($_POST['idUser']);
+        echo $role." et ".$idUser;
+    
+    }
+
 
 
 ?>
