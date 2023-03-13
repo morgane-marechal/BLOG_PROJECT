@@ -21,7 +21,7 @@
             <button id="connexion-button">Connexion</button>        
         </div>
 
-            <div id="inscription-place"></div>
+            <div id="form-auth"></div>
 
             <div id="connexion-ok">
                 <?php if (isset($_SESSION['login'])&& !empty($_SESSION['login'])){

@@ -1,4 +1,4 @@
-const place = document.getElementById("inscription-place");
+const formAuth = document.getElementById("form-auth");
 const connexionButton = document.getElementById("connexion-button");
 const inscriptionButton = document.getElementById("inscription-button");
 
@@ -8,7 +8,7 @@ inscriptionButton.addEventListener("click", async() => {
             return response.text();
         })
         .then(form => {
-            place.innerHTML = form;
+            formAuth.innerHTML = form;
             let submit = document.getElementById("envoie");
             let registerForm = document.getElementById("form-register");
             submit.addEventListener("click", (e) => {
@@ -19,10 +19,10 @@ inscriptionButton.addEventListener("click", async() => {
                 })
                     .then(response => {
                         //isOk.innerHTML="Bravo l'inscription a fonctionné";
-                        return response.text();
+                        return response.json();
                     })
                     .then((content) => {
-                        place.innerHTML=content
+                        formAuth.textContent = content
                     })
             })
         })
@@ -34,7 +34,7 @@ connexionButton.addEventListener("click", async() => {
             return response.text();
         })
         .then(form => {
-            place.innerHTML = form;
+            formAuth.innerHTML = form;
             let submit = document.getElementById("envoie");
             let connexionForm = document.getElementById("form-connection");
             submit.addEventListener("click", (e) => {
@@ -45,14 +45,12 @@ connexionButton.addEventListener("click", async() => {
                     body: form
                 })
                     .then(response => {
-                        if ((response.ok)){
-                        return response.text();
-                        }
+                        return response.json();
+
                     })
                     .then((content) => {
-                        place.innerHTML=content
+                        formAuth.textContent = content
 
-                        //console.log(content['reussite']);
                     })
             })
         })
