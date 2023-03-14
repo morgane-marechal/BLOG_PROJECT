@@ -194,7 +194,7 @@ class User
         }
     
         public function update(int $iduser, $newrang){
-            $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rang = '$newrang' WHERE id = :iduser ");
+            $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rangs = '$newrang' WHERE id = :iduser ");
             $sqlupdate->execute([
                 'iduser' => $iduser,
             ]);
@@ -219,7 +219,7 @@ class User
         <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
         <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
         <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
-        <form id='form_role' method='get'>
+        <form id='form_role' action='admin.php' method='get'>
             <label for='role'>Rôle:</label>
             <select name='role' id='role'>
                 <option value=''>Nouveau rôle :</option>
@@ -227,8 +227,9 @@ class User
                 <option value='moderateur'>Moderateur</option>
                 <option value='administrateur'>Administrateur</option>
             </select>
-            <select name=idUser value='".$result[$i]['id']."'></select>
-        <button type='submit' class='change_utilisateur' id='".$result[$i]['id']."' name='update' href=admin.php?update=".$result[$i]['id'].">Modifier</button>
+            
+            <input name='update' id='update' value='".$result[$i]['id']."' readonly>
+        <button type='submit' class='update' id='".$result[$i]['id']."' >Modifier</button>
         </form>
         
             <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>

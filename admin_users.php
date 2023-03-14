@@ -10,10 +10,9 @@
      $new_display = new User();
      $new_display->displayUsers();
    
- if (!empty($_POST['role'])) {
-     $role = htmlspecialchars($_POST['role']);
-     echo $role." et ".$idUser;
-     $_SESSION['newRang'] = $role;
+ if (isset($_GET['update']) && isset($_GET['role'])) {
+    $updateUser = new User();
+    $updateUser->update((int) $_GET['update'], $_GET['role']);
      }
 
 
