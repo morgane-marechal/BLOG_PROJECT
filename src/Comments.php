@@ -29,16 +29,29 @@ class Comments
         }
     }
 
-    public function registerComments($contenu, $date, $id_utilisateur)
+    public function registerComments($contenu, $date, $id_utilisateur, $id_article)
     {
-        $sql = "INSERT INTO commentaires  (contenu, date, id_utilisateur) VALUES (:contenu, :date, :id_utilisateur)";
+        $sql = "INSERT INTO commentaires  (contenu, date, id_utilisateur, id_article) VALUES (:contenu, :date, :id_utilisateur, :id_article)";
         $sql_exe = $this->db->prepare($sql);
         $sql_exe->execute([
             'contenu' => htmlspecialchars($contenu),
             'date' => htmlspecialchars($date),
             'id_utilisateur' => htmlspecialchars($id_utilisateur),
+            'id_article' => htmlspecialchars($id_article)
         ]);
 
+    }
+
+    public function displayComments()
+    {
+        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, id_article 
+                FROM commentaires  
+                INNER JOIN articles
+                ON commentaires.id_article = articles.id";
+        $sql_select = $this->db->prepare($sql);
+        $sql_select->execute();
+        $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($results);
     }
 
 

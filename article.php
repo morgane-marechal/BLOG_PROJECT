@@ -18,9 +18,11 @@ if(isset($_POST['commentaire'])){
     //valeur de la date pour le type sql datetime YYYY-MM-DD
     $date="$mydate[year]/$mydate[mon]/$mydate[mday] $myhour";
     $id_utilisateur = $_SESSION['id'];
+    $id_article = $article->id;
+
 
     $commenter = new Comments();
-    $commenter->registerComments($contenu, $date, $id_utilisateur);
+    $commenter->registerComments($contenu, $date, $id_utilisateur, $id_article);
 
 }
 
@@ -34,6 +36,7 @@ if(isset($_POST['commentaire'])){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/style.css"/>
+    <script src="app/comments-display.js" defer></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Article</title>
 </head>
@@ -60,22 +63,24 @@ require('header.php');
     <div id="auteur">
         <h3 id="titre-auteur">A propos de l'auteur</h3>
         <p><?= $article->author->bio ?></p>
+    </div>
+    <div id="content-commentaires">
 
     </div>
-        <div id="container-commentaires">
-            <?php if(!isset($_SESSION['utilisateur'])): ?>
-                <p>Connectez-vous pour laisser un commentaire</p>
-            <?php else: ?>
-            <div id="comments-input-container">
-                <h3 id="title-comments">Écrire un commentaire</h3>
-                <form method="POST" name="comments-form" id="comments-form">
-                    <label for="commentaire"> </label>
-                    <textarea  name="commentaire" id="commentaire" rows="5"  cols="44" placeholder="Entrez votre commentaire"></textarea>
-                    <button type="submit"  name="envoie-commentaire" id="envoie-commentaire" value="submit">Commenter</button>
-                </form>
-            </div>
-            <?php endif; ?>
+    <div id="container-commentaires">
+        <?php if(!isset($_SESSION['utilisateur'])): ?>
+            <p>Connectez-vous pour laisser un commentaire</p>
+        <?php else: ?>
+        <div id="comments-input-container">
+            <h3 id="title-comments">Écrire un commentaire</h3>
+            <form method="POST" name="comments-form" id="comments-form">
+                <label for="commentaire"> </label>
+                <textarea  name="commentaire" id="commentaire" rows="5"  cols="44" placeholder="Entrez votre commentaire"></textarea>
+                <button type="submit"  name="envoie-commentaire" id="envoie-commentaire" value="submit">Commenter</button>
+            </form>
         </div>
+        <?php endif; ?>
+    </div>
 </section>
 </body>
 </html>
