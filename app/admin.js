@@ -66,10 +66,6 @@ let btnTest=document.getElementsByClassName(".del");
 deleteEvent();
 
 
-
-
-
-
 //------------- pour update avec GET -----------------------
 
     function updateEvent(){

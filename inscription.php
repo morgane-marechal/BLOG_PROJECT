@@ -1,7 +1,7 @@
 <?php
 require_once 'src/User.php';
 if(isset($_POST) && !empty($_POST['login']) &&!empty($_POST['prenom']) && !empty($_POST['nom'])) {
-    $user = 'user';
+    $user = 'utilisateur';
     $bio = "Aucune biographie n'a été renseignée";
     $new_user = new User();
     $new_user->register($_POST['login'], $_POST['prenom'], $_POST['nom'], $_POST['password'], $user, $bio);
