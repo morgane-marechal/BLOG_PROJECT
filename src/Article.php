@@ -47,9 +47,9 @@ class Article
                 'contenu' => htmlspecialchars($contenu),
                 'titre' => htmlspecialchars($titre),
                 'categorie' => htmlspecialchars($categorie),
-                'date' => $date,
-                'id_utilisateur' => $idUtilisateur,
-                'image' => $image,
+                'date' => htmlspecialchars($date),
+                'id_utilisateur' => htmlspecialchars($idUtilisateur),
+                'image' => htmlspecialchars($image),
             ]);
 
             if ($sql_exe) {

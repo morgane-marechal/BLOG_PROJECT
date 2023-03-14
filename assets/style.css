@@ -211,7 +211,7 @@ textarea {
 #categorie {
     width: 70%;
 }
-#envoie {
+#envoie, #envoie-commentaire {
     align-self: center;
     margin-top: 20px;
     padding: 5px;
@@ -375,9 +375,6 @@ article {
     font-style: italic;
     justify-content: end;
 }
-#info-unique-article {
-
-}
 
 #auteur {
     font-family: 'Nunito', sans-serif;
@@ -391,6 +388,33 @@ article {
 #titre-auteur {
     margin-bottom: 20px;
 }
+
+/* COMMENTAIRES */
+#container-commentaires {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#title-comments {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+#comments-input-container {
+    margin-top: 20px;
+}
+
+#comments-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#comments-form > textarea {
+    background-color: #e1e1e1;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 
 /* DESKTOP */
 /*.nav {*/
