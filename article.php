@@ -9,16 +9,22 @@ if (isset($_GET['id'])) {
     $article = $article->getUniqueArticle($_GET['id']);
 }
 
-if(isset($_POST['envoie-commentaire'])){
+
+if(isset($_POST['commentaire'])){
     $contenu = htmlspecialchars($_POST['commentaire']);
+
     $mydate=getdate(date("U"));
     $myhour=date("H:i:s");
     //valeur de la date pour le type sql datetime YYYY-MM-DD
     $date="$mydate[year]/$mydate[mon]/$mydate[mday] $myhour";
     $id_utilisateur = $_SESSION['id'];
+
     $commenter = new Comments();
     $commenter->registerComments($contenu, $date, $id_utilisateur);
+
 }
+
+
 
 ?>
 <!doctype html>
@@ -62,10 +68,10 @@ require('header.php');
             <?php else: ?>
             <div id="comments-input-container">
                 <h3 id="title-comments">Écrire un commentaire</h3>
-                <form name="comments-form" id="comments-form">
+                <form method="POST" name="comments-form" id="comments-form">
                     <label for="commentaire"> </label>
-                    <textarea name="commentaire" id="commentaire" rows="5"  cols="44" placeholder="Entrez votre commentaire"></textarea>
-                    <button type="submit" id="envoie-commentaire">Commenter</button>
+                    <textarea  name="commentaire" id="commentaire" rows="5"  cols="44" placeholder="Entrez votre commentaire"></textarea>
+                    <button type="submit"  name="envoie-commentaire" id="envoie-commentaire" value="submit">Commenter</button>
                 </form>
             </div>
             <?php endif; ?>

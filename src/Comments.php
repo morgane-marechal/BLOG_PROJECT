@@ -7,6 +7,8 @@ class Comments
     private ?string $date = null;
     private ?int $id_utilisateur = null;
 
+    private PDO $db;
+
     public function __construct()
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
@@ -29,8 +31,7 @@ class Comments
 
     public function registerComments($contenu, $date, $id_utilisateur)
     {
-        $id_utilisateur = $_SESSION['id'];
-        $sql = "INSERT INTO commentaires  (id, contenu, date, id_utilisateur) VALUES (:id, :contenu, :date, :id_utilisateur)";
+        $sql = "INSERT INTO commentaires  (contenu, date, id_utilisateur) VALUES (:contenu, :date, :id_utilisateur)";
         $sql_exe = $this->db->prepare($sql);
         $sql_exe->execute([
             'contenu' => htmlspecialchars($contenu),
