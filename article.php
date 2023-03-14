@@ -2,12 +2,23 @@
 session_start();
 require_once ('src/Article.php');
 require_once ('src/User.php');
+require_once ('src/Comments.php');
 
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
 }
 
+if(isset($_POST['envoie-commentaire'])){
+    $contenu = htmlspecialchars($_POST['commentaire']);
+    $mydate=getdate(date("U"));
+    $myhour=date("H:i:s");
+    //valeur de la date pour le type sql datetime YYYY-MM-DD
+    $date="$mydate[year]/$mydate[mon]/$mydate[mday] $myhour";
+    $id_utilisateur = $_SESSION['id'];
+    $commenter = new Comments();
+    $commenter->registerComments($contenu, $date, $id_utilisateur);
+}
 
 ?>
 <!doctype html>
@@ -49,7 +60,14 @@ require('header.php');
             <?php if(!isset($_SESSION['utilisateur'])): ?>
                 <p>Connectez-vous pour laisser un commentaire</p>
             <?php else: ?>
-                <input type="text">
+            <div id="comments-input-container">
+                <h3 id="title-comments">Écrire un commentaire</h3>
+                <form name="comments-form" id="comments-form">
+                    <label for="commentaire"> </label>
+                    <textarea name="commentaire" id="commentaire" rows="5"  cols="44" placeholder="Entrez votre commentaire"></textarea>
+                    <button type="submit" id="envoie-commentaire">Commenter</button>
+                </form>
+            </div>
             <?php endif; ?>
         </div>
 </section>
