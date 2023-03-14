@@ -187,19 +187,8 @@ class User
         return $sql_exe->fetch(PDO::FETCH_ASSOC);
     }
 
-    // methode pour afficher la bio
-        public function delete(int $idDelete){
-            $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
-            $delete->execute();
-        }
     
-        public function update(int $iduser, $newrang){
-            $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rangs = '$newrang' WHERE id = :iduser ");
-            $sqlupdate->execute([
-                'iduser' => $iduser,
-            ]);
 
-        }
 
     //display all users for admin
 
@@ -239,6 +228,20 @@ class User
         
         }
     }
+
+    public function delete(int $idDelete){
+        $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
+        $delete->execute();
+    }
+
+    public function update(int $iduser, $newrang){
+        $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rangs = '$newrang' WHERE id = :iduser ");
+        $sqlupdate->execute([
+            'iduser' => $iduser,
+        ]);
+
+    }
+    
     public function deconnect()
     {
         unset($_SESSION['utilisateur']);
