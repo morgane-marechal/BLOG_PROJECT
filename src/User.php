@@ -14,7 +14,7 @@ class User
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        $password_db = 'root';
+        strpos($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false ? $password_db = 'root' : $password_db = '';
 
         try {
             $options =
@@ -55,31 +55,6 @@ class User
         }
     }
 
-    public function connection($login, $password)
-    {
-        $sql = "SELECT * 
-                FROM utilisateurs
-                WHERE login = :login ";
-        $sql_exe = $this->db->prepare($sql);
-        $sql_exe->execute([
-            'login' => $login,
-
-        ]);
-        $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
-
-        if ($results) {
-            $hashed_password = $results['password'];
-            if (password_verify($password, $hashed_password)) {
-                session_start();
-                $_SESSION['id'] = $results['id'];
-                $_SESSION['utilisateur'] = $results['login'];
-                return json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
-            }
-        } else {
-            return json_encode(['response' => 'not ok', 'echec' => 'connexion refusée']);
-        }
-    }
-
     public function verifUser()
     {
         if ($_POST['prenom'] && $_POST['nom'] && $_POST['login'] > 3) {
@@ -103,15 +78,42 @@ class User
         }
     }
 
-    public function isConnected()
+    public function connection($login, $password)
     {
-        if (isset($_SESSION['utilisateur'])) {
-            return true;
+        $sql = "SELECT * 
+                FROM utilisateurs
+                WHERE login = :login ";
+        $sql_exe = $this->db->prepare($sql);
+        $sql_exe->execute([
+            'login' => $login,
+
+        ]);
+        $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
+
+        if ($results) {
+            $hashed_password = $results['password'];
+            if (password_verify($password, $hashed_password)) {
+                session_start();
+                $_SESSION['id'] = $results['id'];
+                $_SESSION['utilisateur'] = $results['login'];
+                echo json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
+                header('Location: profil.php');
+                die();
+
+            }
         } else {
-            return false;
+            return json_encode(['response' => 'not ok', 'echec' => 'connexion refusée']);
         }
     }
 
+    public function isConnected()
+    {
+        if(isset($_SESSION['login'])){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function getAllInfos()
     {
         $id = $_SESSION['id'];
@@ -172,24 +174,27 @@ class User
     }
 
     //methode update bio
-    public function setBio(?string $bio): ?string
+    public function setBio(?string $bio)
     {
+        $id = $this->id;
         $newBio = htmlspecialchars($bio);
-        $sql = "UPDATE utilisateurs SET bio = '$newBio' WHERE bio = :bio";
-        $sql_exe = $this->db->prepare($sql);
-        $sql_exe->execute([
-            'bio'=> $newBio,
+        $sql = "UPDATE utilisateurs SET bio = :bio WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'bio' => $newBio,
+            'id' => $id,
         ]);
-        return $sql_exe->fetch(PDO::FETCH_ASSOC);
+        $this->bio = $newBio;
     }
 
+
     // methode pour afficher la bio
-    public function getBio()
+    public function getBio(): ?string
     {
         return $this->bio;
     }
 
-    public function delete()
+    public function deconnect()
     {
         unset($_SESSION['utilisateur']);
         session_destroy();

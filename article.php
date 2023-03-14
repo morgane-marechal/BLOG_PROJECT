@@ -45,16 +45,13 @@ require('header.php');
         <p><?= $article->author->bio ?></p>
 
     </div>
-    <div id="container-commentaires">
-        <?php if(!isset($_SESSION['nom']) && !isset($_SESSION['prenom'])):?>
-            <?= "Connectez-vous pour laisser un commentaire" ?>
-            <?= $_SESSION['nom'] ?>
-        <?php else: ?>
-            <?php "<input type='text'>"?>
-        <?php endif; ?>
-
-    </div>
-
+        <div id="container-commentaires">
+            <?php if(!isset($_SESSION['utilisateur'])): ?>
+                <p>Connectez-vous pour laisser un commentaire</p>
+            <?php else: ?>
+                <input type="text">
+            <?php endif; ?>
+        </div>
 </section>
 </body>
 </html>

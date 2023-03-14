@@ -12,16 +12,17 @@
             <ul class="ul_nav">
                 <p id="menu-title">MENU</p>
                     <li><a href="index.php">Accueil</a></li>
-                    <li><a href="authentification.php">Authentification</a></li>
-                    <?php if (isset($_SESSION['nom']) && !empty($_SESSION['nom'])) { ?>
+                    <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <li><a href="profil.php">Profil</span></a></li>
+                        <li><a href="article_form.php">Rédiger</a></li>
                     <?php } ?>
-                <li><a href="article_form.php">Rédiger</a></li>
                 <li><a href="blog.php">Blog</a></li>
+                <?php if(!isset($_SESSION['utilisateur'])) :?>
                 <div class="container-buttons-nav">
                     <a href="inscription.php"><button class="btn-register">S'inscrire</button></a>
                     <a  href="connexion.php"><button class="btn-connection">Se connecter</button></a>
                 </div>
+                <?php endif; ?>
 
                 <?php if ((isset($_SESSION['rangs']) === ('admin' || 'moderateur')) && (!empty($_SESSION['rangs']))) { ?>
                         <li><a href=redaction.php>Rédaction</span></a></li>
@@ -30,8 +31,8 @@
                     <?php if ((isset($_SESSION['rangs']) === 'admin') && (!empty($_SESSION['rangs']))) { ?>
                         <li><a href=administration.php>Administration</span></a></li>
                     <?php } ?>
-                    <?php if (isset($_SESSION['nom']) && !empty($_SESSION['nom'])) { ?>
-                        <li><a href=deconnexion.php>Déconnexion</span></a></li>
+                    <?php if (isset($_SESSION['utilisateur']) && !empty($_SESSION['utilisateur'])) { ?>
+                        <li><a href=deconnexion.php><button class="btn-deconnection">Déconnexion</button></a></li>
                     <?php } ?>
             </ul>
         </nav>
