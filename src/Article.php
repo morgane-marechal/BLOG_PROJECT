@@ -1,5 +1,7 @@
 <?php
-#[AllowDynamicProperties] class Article
+
+#[AllowDynamicProperties]
+class Article
 {
     public ?int $id = null;
     public ?string $nom = null;
