@@ -55,31 +55,6 @@ class User
         }
     }
 
-    public function connection($login, $password)
-    {
-        $sql = "SELECT * 
-                FROM utilisateurs
-                WHERE login = :login ";
-        $sql_exe = $this->db->prepare($sql);
-        $sql_exe->execute([
-            'login' => $login,
-
-        ]);
-        $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
-
-        if ($results) {
-            $hashed_password = $results['password'];
-            if (password_verify($password, $hashed_password)) {
-                session_start();
-                $_SESSION['id'] = $results['id'];
-                $_SESSION['utilisateur'] = $results['login'];
-                return json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
-            }
-        } else {
-            return json_encode(['response' => 'not ok', 'echec' => 'connexion refusée']);
-        }
-    }
-
     public function verifUser()
     {
         if ($_POST['prenom'] && $_POST['nom'] && $_POST['login'] > 3) {
@@ -103,15 +78,42 @@ class User
         }
     }
 
-    public function isConnected()
+    public function connection($login, $password)
     {
-        if (isset($_SESSION['utilisateur'])) {
-            return true;
+        $sql = "SELECT * 
+                FROM utilisateurs
+                WHERE login = :login ";
+        $sql_exe = $this->db->prepare($sql);
+        $sql_exe->execute([
+            'login' => $login,
+
+        ]);
+        $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
+
+        if ($results) {
+            $hashed_password = $results['password'];
+            if (password_verify($password, $hashed_password)) {
+                session_start();
+                $_SESSION['id'] = $results['id'];
+                $_SESSION['utilisateur'] = $results['login'];
+                echo json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
+                header('Location: profil.php');
+                die();
+
+            }
         } else {
-            return false;
+            return json_encode(['response' => 'not ok', 'echec' => 'connexion refusée']);
         }
     }
 
+    public function isConnected()
+    {
+        if(isset($_SESSION['login'])){
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function getAllInfos()
     {
         $id = $_SESSION['id'];
@@ -171,73 +173,27 @@ class User
         return "Vous avez changé votre mot de passe et mis à jour votre profil.<br>";
     }
 
-    public function getBio()
+    //methode update bio
+    public function setBio(?string $bio)
+    {
+        $id = $this->id;
+        $newBio = htmlspecialchars($bio);
+        $sql = "UPDATE utilisateurs SET bio = :bio WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'bio' => $newBio,
+            'id' => $id,
+        ]);
+        $this->bio = $newBio;
+    }
+
+
+    // methode pour afficher la bio
+    public function getBio(): ?string
     {
         return $this->bio;
     }
-    //methode update bio
-    public function setBio(?string $bio): ?string
-    {
-        $newBio = htmlspecialchars($bio);
-        $sql = "UPDATE utilisateurs SET bio = '$newBio' WHERE bio = :bio";
-        $sql_exe = $this->db->prepare($sql);
-        $sql_exe->execute([
-            'bio'=> $newBio,
-        ]);
-        return $sql_exe->fetch(PDO::FETCH_ASSOC);
-    }
 
-    // methode pour afficher la bio
-        public function delete(int $idDelete){
-            $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
-            $delete->execute();
-        }
-    
-        public function update(int $iduser, $newrang){
-            $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rang = '$newrang' WHERE id = :iduser ");
-            $sqlupdate->execute([
-                'iduser' => $iduser,
-            ]);
-
-        }
-
-    //display all users for admin
-
-    public function displayUsers()
-    {
-        
-        $displayUsers = $this->db->prepare("SELECT * FROM utilisateurs");
-        $displayUsers->execute([
-            //'id' => $id,
-        ]);
-        $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
-        //echo var_dump($result);
-        for ($i = 0; $i <= (count($result)-1); $i++) {
-        echo 
-        "<div id='user".$result[$i]['id']." class='user'>
-        <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
-        <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
-        <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
-        <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
-        <form id='form_role' method='get'>
-            <label for='role'>Rôle:</label>
-            <select name='role' id='role'>
-                <option value=''>Nouveau rôle :</option>
-                <option value='utilisateur'>Utilisateur</option>
-                <option value='moderateur'>Moderateur</option>
-                <option value='administrateur'>Administrateur</option>
-            </select>
-            <select name=idUser value='".$result[$i]['id']."'></select>
-        <button type='submit' class='change_utilisateur' id='".$result[$i]['id']."' name='update' href=admin.php?update=".$result[$i]['id'].">Modifier</button>
-        </form>
-        
-            <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
-        
-
-        </div>";
-        
-        }
-    }
     public function deconnect()
     {
         unset($_SESSION['utilisateur']);

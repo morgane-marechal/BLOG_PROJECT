@@ -14,7 +14,6 @@ fetch('blog.php?articles=all')
             const paragraphe = document.createElement('p');
             const buttonRead = document.createElement('a');
             const categorie = document.createElement('span');
-            console.log(articles[i])
 
             newTitle.classList.add('title-article');
             newDate.classList.add('date-article')
