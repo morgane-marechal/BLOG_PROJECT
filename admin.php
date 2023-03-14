@@ -14,6 +14,7 @@
     <?php
     require('header.php');
     ?>
+    <?php require('src/User.php'); ?>
     <main>
 
     <div id="buttons-admin">
@@ -22,6 +23,13 @@
     </div>
 
     <div id="user-place"></div>
+    <?php 
+         if (isset($_GET['update']) && isset($_GET['role'])) {
+            $updateUser = new User();
+            $updateUser->update((int) $_GET['update'], $_GET['role']);
+             }
+        
+    ?>
 
     </main>
 </body>

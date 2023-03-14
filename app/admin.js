@@ -18,7 +18,7 @@ function fetchDisplay(){
             .then((content) => {
                 displayUser.innerHTML=content
                 // updateEvent(); mettre fonction pour ajouter event listener
-
+                updateEvent();
                 deleteEvent();
         })
 }
@@ -71,26 +71,18 @@ deleteEvent();
 
 
 //------------- pour update avec GET -----------------------
-/*
-let allUp=document.querySelectorAll('.change_utilisateur');
-let btnUp=document.getElementsByClassName('.change_utilisateur');
 
-    for (const btnUp of allUp){
-        btnUp.addEventListener("click", (e) =>{
-           // e.preventDefault();
-            let idUser= e.target.id
-            console.log("update  "+idUser);
-            update(idUser);
-            fetchDisplay();
-        })
+    function updateEvent(){
+        let allUp=document.querySelectorAll('.update');
+        console.log("update: "+allUp.length);
+        for (const btnUp of allUp){
+            btnUp.addEventListener("click", (e) =>{
+            // e.preventDefault();
+                //console.log("update nb "+idUp)
+                fetchDisplay();
+            // window.location.reload();
+            })
+        }
     }
-
-    async function done(idTask){
-        await fetch(`todolist.php?update=${idTask}`)
-        .then((resp)=> {
-            console.log("reponse update "+resp)          
-            return resp.text();
-        })
-
-    }
-*/
+   
+updateEvent();

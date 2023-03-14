@@ -172,6 +172,11 @@ class User
         $_SESSION['password'] = $newpassword;
         return "Vous avez changé votre mot de passe et mis à jour votre profil.<br>";
     }
+    
+     public function getBio()
+    {
+        return $this->bio;
+    }
 
     //methode update bio
     public function setBio(?string $bio)
@@ -186,14 +191,60 @@ class User
         ]);
         $this->bio = $newBio;
     }
+    
+    
+ //display all users for admin
 
-
-    // methode pour afficher la bio
-    public function getBio(): ?string
+    public function displayUsers()
     {
-        return $this->bio;
+        
+        $displayUsers = $this->db->prepare("SELECT * FROM utilisateurs");
+        $displayUsers->execute([
+            //'id' => $id,
+        ]);
+        $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
+        //echo var_dump($result);
+        for ($i = 0; $i <= (count($result)-1); $i++) {
+        echo 
+        "<div id='user".$result[$i]['id']." class='user'>
+        <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
+        <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
+        <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
+        <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
+        <form id='form_role' action='admin.php' method='get'>
+            <label for='role'>Rôle:</label>
+            <select name='role' id='role'>
+                <option value=''>Nouveau rôle :</option>
+                <option value='utilisateur'>Utilisateur</option>
+                <option value='moderateur'>Moderateur</option>
+                <option value='administrateur'>Administrateur</option>
+            </select>
+            
+            <input name='update' id='update' value='".$result[$i]['id']."' readonly>
+        <button type='submit' class='update' id='".$result[$i]['id']."' >Modifier</button>
+        </form>
+        
+            <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
+        
+
+        </div>";
+        
+        }
     }
 
+    public function delete(int $idDelete){
+        $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
+        $delete->execute();
+    }
+
+    public function update(int $iduser, $newrang){
+        $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET rangs = '$newrang' WHERE id = :iduser ");
+        $sqlupdate->execute([
+            'iduser' => $iduser,
+        ]);
+
+    }
+    
     public function deconnect()
     {
         unset($_SESSION['utilisateur']);
@@ -222,3 +273,4 @@ class User
 
 
 }
+
