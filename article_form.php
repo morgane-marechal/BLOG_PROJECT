@@ -1,18 +1,24 @@
-<?php session_start(); ?>
-    <?php require ('header.php'); ?>
-    <?php require('src/Article.php'); ?>
-    <?php require('src/User.php'); ?>
+<?php
+session_start();
+require('header.php');
+require('src/Article.php');
+require('src/User.php');
 
-    <?php 
-    if(!empty($_POST['article_title'])&& !empty($_POST['article_content']) && !empty($_POST['categorie'])) {
+if(!isset($_SESSION['utilisateur'])){
+    header('Location: connexion.php');
+}
 
-        //$image = $_POST['image'];
-        if(isset($_FILES['image'])){
-            $tmpName = $_FILES['image']['tmp_name'];
-            $name = $_FILES['image']['name'];
-            $size = $_FILES['image']['size'];
-            $error = $_FILES['image']['error'];
-            # TODO : FAIRE ATTENTION AU CHEMINS
+
+
+if (!empty($_POST['article_title']) && !empty($_POST['article_content']) && !empty($_POST['categorie'])) {
+
+    //$image = $_POST['image'];
+    if (isset($_FILES['image'])) {
+        $tmpName = $_FILES['image']['tmp_name'];
+        $name = $_FILES['image']['name'];
+        $size = $_FILES['image']['size'];
+        $error = $_FILES['image']['error'];
+        # TODO : FAIRE ATTENTION AU CHEMINS
             move_uploaded_file( $tmpName, './images/'.$name);
             $image = $_FILES['image']['name'];
         }

@@ -44,12 +44,13 @@ connexionButton.addEventListener("click", async() => {
                     method: "POST",
                     body: form
                 })
-                    .then(response => {
+                    .then((response) => {
                         return response.json();
 
                     })
                     .then((content) => {
                         formAuth.textContent = content
+
 
                     })
             })
