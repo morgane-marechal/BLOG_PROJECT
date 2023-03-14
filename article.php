@@ -65,7 +65,8 @@ require('header.php');
         <p><?= $article->author->bio ?></p>
     </div>
     <div id="content-commentaires">
-
+        <?php $comments = new Comments;
+            $comments->displayComments($article->id); ?>
     </div>
     <div id="container-commentaires">
         <?php if(!isset($_SESSION['utilisateur'])): ?>

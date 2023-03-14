@@ -42,16 +42,17 @@ class Comments
 
     }
 
-    public function displayComments()
+    public function displayComments($id)
     {
-        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, id_article 
+        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article
                 FROM commentaires  
-                INNER JOIN articles
-                ON commentaires.id_article = articles.id";
+                WHERE commentaires.id_article = $id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        echo "<pre>";
         var_dump($results);
+        echo "</pre>";
     }
 
 
