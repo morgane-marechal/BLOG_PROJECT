@@ -50,9 +50,7 @@ class Comments
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
-        echo "<pre>";
-        var_dump($results);
-        echo "</pre>";
+        return json_encode($results);
     }
 
 
