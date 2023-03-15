@@ -143,7 +143,7 @@ class Article
 
         <input class='updateArticle' id='submit' name='submit' type='submit' value='Appliquer le changement'>
         </form>
-        <button type='submit' class='del-article' id='".$results[$i]['id']."' href=admin.php?delete-article=".$results[$i]['id']." >Supprimer l'article</button>";
+        <button type='submit' class='del-article' id='".$results[$i]['id']."' href=admin_articles.php?delete-article=".$results[$i]['id']." >Supprimer l'article</button>";
         }
     }
 
@@ -167,6 +167,11 @@ class Article
         $sqlupdate->execute([
             'idarticle' => $idarticle,
         ]);
+    }
+
+    public function deleteArticle(int $idDelete){
+        $delete= $this->db->prepare("DELETE from articles WHERE id = '$idDelete'");
+        $delete->execute();
     }
 
 
