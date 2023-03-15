@@ -67,13 +67,11 @@ if ((!empty($_POST)) && $_POST['biographie']) {
     $updateBio->setBio($newBio);
 }
 
-
 if ((!empty($_POST)) && $_POST['newpassword']) {
     $newpassword = htmlspecialchars($_POST['newpassword']);
     $updatePW = new User();
     $updatePW->setPassword($newpassword);
 }
-
 
 ?>
 

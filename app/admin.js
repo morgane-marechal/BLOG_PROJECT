@@ -4,6 +4,7 @@ console.log("VERIF CONNEXION JS")
 const displayUser = document.getElementById("user-place");
 const btnUser = document.getElementById("utilisateurs-button");
 
+
 btnUser.addEventListener("click", (e) => {
     fetchDisplay();
 })

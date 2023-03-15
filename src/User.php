@@ -226,8 +226,6 @@ class User
         </form>
         
             <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
-        
-
         </div>";
         
         }

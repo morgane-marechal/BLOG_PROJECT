@@ -110,5 +110,41 @@ class Article
         return $article;
     }
 
+
+    public function manageArticles()
+    {
+        $managearticles = "SELECT articles.id, 
+                articles.titre, 
+                articles.contenu, 
+                articles.image, 
+                articles.categorie 
+                FROM articles";
+        $sql_select = $this->db->prepare($managearticles);
+        $sql_select->execute();
+        $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($results);
+        for ($i = 0; $i <= (count($results)-1); $i++) {
+        echo " <form id='admin_article_form' action='' method='get'>
+        <h3>Modération des articles</h3>
+        <label for='newtitre'>Titre</label>
+        <input type='text' name='newtitre' id='newtitre' value=".$results[$i]['titre']." minlength='3'>
+        <label for='contenu'>Contenu
+            <textarea name='contenu' value=".$results[$i]['contenu'].">".$results[$i]['contenu']."</textarea>
+        </label>
+        <select name='categorie' id='categorie'>
+                <option value='".$results[$i]['id']."'>".$results[$i]['categorie']."</option>
+                <option value='reconversion'>Reconversion</option>
+                <option value='autoformation'>Autoformation</option>
+                <option value='actu'>Actu</option>
+                <option value='divers'>Divers</option>
+                <option value='jsepa'>Je ne sais pas</option>
+        </select>
+
+        <input class='submit' id='submit' name='submit' type='submit' value='Appliquer le changement'>
+        </form>";
+
+        }
+    }
+
 }
 ?>  
