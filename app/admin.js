@@ -102,7 +102,7 @@ function fetchDisplayArticle(){
             return response.text();
         })
             .then((content) => {
-                displayArticle.innerHTML=content
+                displayUser.innerHTML=content
                 updateArticle();
         })
 }
