@@ -2,11 +2,10 @@
 
 class Comments
 {
-    private ?int $id = null;
+    public ?int $id = null;
     private ?string $contenu = null;
     private ?string $date = null;
     private ?int $id_utilisateur = null;
-
     private PDO $db;
 
     public function __construct()
@@ -42,14 +41,11 @@ class Comments
 
     }
 
-    public function displayComments()
+    public function displayComments($id)
     {
-        $sql = "SELECT commentaires.id, 
-                        commentaires.contenu, 
-                        commentaires.date, 
-                        commentaires.id_utilisateur, 
-                        commentaires.id_article
-                FROM commentaires";
+        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article
+                FROM commentaires  
+                WHERE commentaires.id_article = $id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
@@ -58,12 +54,7 @@ class Comments
 
     public function displayOneComment()
     {
-        $sql = "SELECT LAST_INSERT_ID()
-                INTO commentaires";
-        $sql_select = $this->db->prepare($sql);
-        $sql_select->execute();
-        $results = $sql_select->fetch(PDO::FETCH_ASSOC);
-        return json_encode($results);
+
     }
 
     /**

@@ -34,8 +34,7 @@ if(isset($_POST['commentaire'])){
     die();
 }
 
-$comments = new Comments;
-$comments->displayComments($article->id);
+
 
 ?>
 <!doctype html>
@@ -80,6 +79,7 @@ require('header.php');
         <?php if(!isset($_SESSION['utilisateur'])): ?>
             <p>Connectez-vous pour laisser un commentaire</p>
         <?php else: ?>
+
         <div id="comments-input-container">
             <h3 id="title-comments">Écrire un commentaire</h3>
             <form method="POST" name="comments-form" id="comments-form">

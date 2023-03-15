@@ -29,26 +29,21 @@ fetch(`article.php?articleid=${param.get('id')}`)
 // On affiche cette réponse dans la div que l'on va créer et qui aura une classe commentaire
 // On ajoute le contenu dans la div
 const commentsForm = document.querySelector('#comments-form');
-    commentsForm.addEventListener('submit', (ev) => {
-        ev.preventDefault();
-        const commentInput = new FormData(commentsForm)
-        fetch(`article.php?id=${param.get('id')}`, {
-            method: 'POST',
-            body: commentInput
-        })
+commentsForm.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const commentInput = new FormData(commentsForm)
+    fetch(`article.php?id=${param.get('id')}`, {
+        method: 'POST',
+        body: commentInput
+    })
         .then((response) => {
-            console.log(commentInput)
-            return response.json()
+            return commentInput.get('commentaire')
         })
         .then((data) => {
-            console.log(data)
             const divCommentaire = document.createElement('div');
             divCommentaire.classList.add('commentaire');
-            divCommentaire.innerHTML = data['commentaire'];
+            divCommentaire.innerHTML = data;
             commentsDisplay.appendChild(divCommentaire);
         })
-        document.querySelector('.commentaire').value = '';
     })
-
-
 

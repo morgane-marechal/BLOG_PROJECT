@@ -13,7 +13,6 @@ class Article
      public ?User $author = null;
     public $image;
     private ?string $idUtilisateur= null;
-
     private PDO $db;
 
     public function __construct()
