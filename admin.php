@@ -23,6 +23,7 @@
     </div>
 
     <div id="user-place"></div>
+    <div id="article-place"></div>
     <?php 
          if (isset($_GET['update']) && isset($_GET['role'])) {
             $updateUser = new User();

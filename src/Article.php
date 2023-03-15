@@ -126,13 +126,14 @@ class Article
         for ($i = 0; $i <= (count($results)-1); $i++) {
         echo " <form id='admin_article_form' action='' method='get'>
         <h3>Modération des articles</h3>
+        <input name='id_article' id='id_article' value='".$results[$i]['id']."' readonly>
         <label for='newtitre'>Titre</label>
         <input type='text' name='newtitre' id='newtitre' value=".$results[$i]['titre']." minlength='3'>
-        <label for='contenu'>Contenu
+        <label for='contenu'>Contenu</label>
             <textarea name='contenu' value=".$results[$i]['contenu'].">".$results[$i]['contenu']."</textarea>
-        </label>
+        <label for='categorie'>Catégorie</label>
         <select name='categorie' id='categorie'>
-                <option value='".$results[$i]['id']."'>".$results[$i]['categorie']."</option>
+                <option value=''>".$results[$i]['categorie']."</option>
                 <option value='reconversion'>Reconversion</option>
                 <option value='autoformation'>Autoformation</option>
                 <option value='actu'>Actu</option>
@@ -142,9 +143,30 @@ class Article
 
         <input class='submit' id='submit' name='submit' type='submit' value='Appliquer le changement'>
         </form>";
-
         }
     }
+
+    public function updateTitre(int $idarticle, $newtitre){
+        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newtitre' WHERE id = :idarticle ");
+        $sqlupdate->execute([
+            'idarticle' => $idarticle,
+        ]);
+    }
+
+    public function updateContent(int $idarticle, $newcontent){
+        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newcontent' WHERE id = :idarticle ");
+        $sqlupdate->execute([
+            'idarticle' => $idarticle,
+        ]);
+    }
+
+    public function updateCategorie(int $idarticle, $newcategorie){
+        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newcategorie' WHERE id = :idarticle ");
+        $sqlupdate->execute([
+            'idarticle' => $idarticle,
+        ]);
+    }
+
 
 }
 ?>  

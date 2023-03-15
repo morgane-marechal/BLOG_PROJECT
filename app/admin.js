@@ -2,8 +2,11 @@
 console.log("VERIF CONNEXION JS")
 
 const displayUser = document.getElementById("user-place");
+const displayArticle = document.getElementById("article-place");
 const btnUser = document.getElementById("utilisateurs-button");
+const btnArticle = document.getElementById("articles-button");
 
+// ---------------------- manage users -------------------------
 
 btnUser.addEventListener("click", (e) => {
     fetchDisplay();
@@ -83,3 +86,23 @@ deleteEvent();
     }
    
 updateEvent();
+
+
+// ------------------- manage articles ----------------------
+
+btnArticle.addEventListener("click", (e) => {
+    fetchDisplayArticle();
+})
+
+function fetchDisplayArticle(){               
+    //e.preventDefault();
+    fetch('admin_articles.php')
+        .then(response => {
+            //console.log(response);
+            return response.text();
+        })
+            .then((content) => {
+                displayArticle.innerHTML=content
+                // updateEvent(); mettre fonction pour ajouter event listener
+        })
+}
