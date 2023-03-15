@@ -13,7 +13,6 @@ class Article
      public ?User $author = null;
     public $image;
     private ?string $idUtilisateur= null;
-
     private PDO $db;
 
     public function __construct()
@@ -59,7 +58,6 @@ class Article
             }
     }
 
-
     public function getArticles()
     {
         $sql = "SELECT articles.id AS article_id, 
@@ -80,6 +78,10 @@ class Article
         return json_encode($results);
     }
 
+    // Fonction qui va permettre de récupérer l'article avec l'ID passé en paramètre
+    // On récupère tout dans la table article, utilisateurs et on donne un alias à id de l'article pour éviter d'être confus
+    // On join la classe utilisateur et l'on dit l'id utilisateur dans la table article est égale à l'id de la table utilisateur
+    // On récupère les infos là où articles.id est égal à l'id qui est récupéré en paramètre de la fonction
     public function getUniqueArticle($id): Article
     {
         $sql = "SELECT articles.*, utilisateurs.*, articles.id AS id

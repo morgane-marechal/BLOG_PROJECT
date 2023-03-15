@@ -2,11 +2,10 @@
 
 class Comments
 {
-    private ?int $id = null;
+    public ?int $id = null;
     private ?string $contenu = null;
     private ?string $date = null;
     private ?int $id_utilisateur = null;
-
     private PDO $db;
 
     public function __construct()
@@ -53,6 +52,10 @@ class Comments
         return json_encode($results);
     }
 
+    public function displayOneComment()
+    {
+
+    }
 
     /**
      * @return int|null

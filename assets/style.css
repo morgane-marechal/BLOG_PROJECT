@@ -416,6 +416,27 @@ article {
     padding: 10px;
 }
 
+/* COMMENTAIRES */
+
+#content-commentaires {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #ffffff;
+    margin: 0 30px;
+}
+
+#content-commentaires:before {
+    content: "Tous les commentaires : ";
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.commentaire {
+    justify-content: center;
+    display: flex;
+}
+
 
 /* DESKTOP */
 
@@ -479,7 +500,7 @@ article {
     }
 
     #contenu-unique-article {
-        width: 1200px;
+       margin: 0 60px;
     }
 
 }

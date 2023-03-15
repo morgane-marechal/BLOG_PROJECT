@@ -4,13 +4,18 @@ require_once ('src/Article.php');
 require_once ('src/User.php');
 require_once ('src/Comments.php');
 
+// Si GET['ID'] est set alors on instancie un nouvel objet article de la classe Article()
+// On appelle la fonction getUniqueArticle qui possède l'ID DE l'article afin d'afficher cette article en particulier
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
-
-
 }
 
+if (isset($_GET['articleid'])) {
+    $commentaires = new Comments();
+    echo $commentaires->displayComments($_GET['articleid']);
+    die();
+}
 
 if(isset($_POST['commentaire'])){
     $contenu = htmlspecialchars($_POST['commentaire']);
@@ -25,10 +30,11 @@ if(isset($_POST['commentaire'])){
 
     $commenter = new Comments();
     $commenter->registerComments($contenu, $date, $id_utilisateur, $id_article);
+    echo json_encode(['insert' => true]);
+    die();
 }
 
-$comments = new Comments;
-$comments->displayComments($article->id);
+
 
 ?>
 <!doctype html>
@@ -73,6 +79,7 @@ require('header.php');
         <?php if(!isset($_SESSION['utilisateur'])): ?>
             <p>Connectez-vous pour laisser un commentaire</p>
         <?php else: ?>
+
         <div id="comments-input-container">
             <h3 id="title-comments">Écrire un commentaire</h3>
             <form method="POST" name="comments-form" id="comments-form">
