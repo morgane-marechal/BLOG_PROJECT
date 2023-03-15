@@ -102,8 +102,9 @@ function fetchDisplayArticle(){
             return response.text();
         })
             .then((content) => {
-                displayArticle.innerHTML=content
+                displayUser.innerHTML=content
                 updateArticle();
+                deleteArticle();
         })
 }
 
@@ -120,3 +121,33 @@ function updateArticle(){
 }
 
 updateArticle();
+
+// --------------- manage articles -> delete dynamic----------------------
+
+let allDelArticle=document.querySelectorAll('.del-article');
+console.log("delte article ".allDelArticle );
+
+function deleteArticle(){
+    let allDelArticle=document.querySelectorAll('.del-article');
+    console.log("allDelArticle: "+allDelArticle.length);
+    for (const btn of allDelArticle){
+        btn.addEventListener("click", (e) =>{
+        // e.preventDefault();
+            let idDeleteArticle= e.target.id
+            console.log("delete  Article "+idDeleteArticle)
+            deleteTheArticle(idDeleteArticle);
+            fetchDisplayArticle();
+        // window.location.reload();
+        })
+    }
+}
+
+async function deleteTheArticle(idDeleteArticle){
+    await fetch(`admin_articles.php?delete-article=${idDeleteArticle}`)
+    .then((resp)=> {
+        //console.log("reponse deleteMe "+resp)
+        return resp.text();
+    })
+}
+
+deleteArticle();

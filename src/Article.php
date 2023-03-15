@@ -125,9 +125,9 @@ class Article
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
         //var_dump($results);
+        echo "<h2>Modération des articles</h2>";
         for ($i = 0; $i <= (count($results)-1); $i++) {
         echo " <form id='admin_article_form' action='' method='get'>
-        <h3>Modération des articles</h3>
         <input name='id_article' id='id_article' value='".$results[$i]['id']."' readonly>
         <label for='newtitre'>Titre</label>
         <input type='text' name='newtitre' id='newtitre' value=".$results[$i]['titre']." minlength='3'>
@@ -144,7 +144,8 @@ class Article
         </select>
 
         <input class='updateArticle' id='submit' name='submit' type='submit' value='Appliquer le changement'>
-        </form>";
+        </form>
+        <button type='submit' class='del-article' id='".$results[$i]['id']."' href=admin_articles.php?delete-article=".$results[$i]['id']." >Supprimer l'article</button>";
         }
     }
 
@@ -168,6 +169,11 @@ class Article
         $sqlupdate->execute([
             'idarticle' => $idarticle,
         ]);
+    }
+
+    public function deleteArticle(int $idDelete){
+        $delete= $this->db->prepare("DELETE from articles WHERE id = '$idDelete'");
+        $delete->execute();
     }
 
 
