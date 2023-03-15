@@ -211,6 +211,7 @@ class User
         <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
         <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
         <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
+        <div class='rang' <p> Rang : ".$result[$i]['rangs']."</p></div>
         <form id='form_role' action='admin.php' method='get'>
             <label for='role'>Rôle:</label>
             <select name='role' id='role'>
@@ -225,8 +226,6 @@ class User
         </form>
         
             <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
-        
-
         </div>";
         
         }

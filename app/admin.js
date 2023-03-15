@@ -2,7 +2,11 @@
 console.log("VERIF CONNEXION JS")
 
 const displayUser = document.getElementById("user-place");
+const displayArticle = document.getElementById("article-place");
 const btnUser = document.getElementById("utilisateurs-button");
+const btnArticle = document.getElementById("articles-button");
+
+// ---------------------- manage users -------------------------
 
 btnUser.addEventListener("click", (e) => {
     fetchDisplay();
@@ -66,10 +70,6 @@ let btnTest=document.getElementsByClassName(".del");
 deleteEvent();
 
 
-
-
-
-
 //------------- pour update avec GET -----------------------
 
     function updateEvent(){
@@ -86,3 +86,37 @@ deleteEvent();
     }
    
 updateEvent();
+
+
+// ------------------- manage articles ----------------------
+
+btnArticle.addEventListener("click", (e) => {
+    fetchDisplayArticle();
+})
+
+function fetchDisplayArticle(){               
+    //e.preventDefault();
+    fetch('admin_articles.php')
+        .then(response => {
+            //console.log(response);
+            return response.text();
+        })
+            .then((content) => {
+                displayArticle.innerHTML=content
+                updateArticle();
+        })
+}
+
+function updateArticle(){
+    let allArt=document.querySelectorAll('.updateArticle');
+    console.log("update article: "+allArt.length);
+    for (const btnUpArt of allArt){
+        btnUpArt.addEventListener("click", (e) =>{
+        // e.preventDefault();
+            //console.log("update nb "+idUp)
+            fetchDisplayArticle();
+        })
+    }
+}
+
+updateArticle();

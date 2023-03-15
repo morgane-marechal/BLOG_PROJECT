@@ -6,7 +6,7 @@
 
 
 
-    echo var_dump($_SESSION);
+    //echo var_dump($_SESSION);
      $new_display = new User();
      $new_display->displayUsers();
    
