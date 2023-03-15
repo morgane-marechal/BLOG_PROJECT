@@ -4,13 +4,18 @@ require_once ('src/Article.php');
 require_once ('src/User.php');
 require_once ('src/Comments.php');
 
+// Si GET['ID'] est set alors on instancie un nouvel objet article de la classe Article()
+// On appelle la fonction getUniqueArticle qui possède l'ID DE l'article afin d'afficher cette article en particulier
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
-
-
 }
 
+if (isset($_GET['articleid'])) {
+    $commentaires = new Comments();
+    echo $commentaires->displayComments($_GET['articleid']);
+    die();
+}
 
 if(isset($_POST['commentaire'])){
     $contenu = htmlspecialchars($_POST['commentaire']);
