@@ -15,6 +15,7 @@
     require('header.php');
     ?>
     <?php require('src/User.php'); ?>
+    <?php require('src/Article.php'); ?>
     <main>
 
     <div id="buttons-admin">
@@ -22,15 +23,33 @@
             <button id="articles-button">Gestion des articles</button>        
     </div>
 
-    <div id="user-place"></div>
-    <div id="article-place"></div>
+
     <?php 
          if (isset($_GET['update']) && isset($_GET['role'])) {
             $updateUser = new User();
             $updateUser->update((int) $_GET['update'], $_GET['role']);
              }
+
+        //update de l'article
+        if (isset($_GET['id_article']) && isset($_GET['newtitre'])) {
+            $updateTitre = new Article();
+            $updateTitre->updateTitre((int) $_GET['id_article'], $_GET['newtitre']);
+        }
+        
+        if (isset($_GET['id_article']) && isset($_GET['contenu'])) {
+            $updateContent = new Article();
+            $updateContent->updateContent((int) $_GET['id_article'], $_GET['contenu']);
+        } 
+
+        if (isset($_GET['id_article']) && isset($_GET['categorie'])) {
+            $updateCategorie = new Article();
+            $updateCategorie->updateCategorie((int) $_GET['id_article'], $_GET['categorie']);
+        } 
         
     ?>
+
+    <div id="user-place"></div>
+    <div id="article-place"></div>
 
     </main>
 </body>

@@ -103,6 +103,20 @@ function fetchDisplayArticle(){
         })
             .then((content) => {
                 displayArticle.innerHTML=content
-                // updateEvent(); mettre fonction pour ajouter event listener
+                updateArticle();
         })
 }
+
+function updateArticle(){
+    let allArt=document.querySelectorAll('.updateArticle');
+    console.log("update article: "+allArt.length);
+    for (const btnUpArt of allArt){
+        btnUpArt.addEventListener("click", (e) =>{
+        // e.preventDefault();
+            //console.log("update nb "+idUp)
+            fetchDisplayArticle();
+        })
+    }
+}
+
+updateArticle();

@@ -141,27 +141,28 @@ class Article
                 <option value='jsepa'>Je ne sais pas</option>
         </select>
 
-        <input class='submit' id='submit' name='submit' type='submit' value='Appliquer le changement'>
+        <input class='updateArticle' id='submit' name='submit' type='submit' value='Appliquer le changement'>
         </form>";
         }
     }
 
     public function updateTitre(int $idarticle, $newtitre){
-        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newtitre' WHERE id = :idarticle ");
+        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newtitre' WHERE id = :idarticle");
         $sqlupdate->execute([
             'idarticle' => $idarticle,
         ]);
     }
 
     public function updateContent(int $idarticle, $newcontent){
-        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newcontent' WHERE id = :idarticle ");
+        $sqlupdate = $this -> db -> prepare("UPDATE articles SET contenu = :newcontent WHERE id = :idarticle");
         $sqlupdate->execute([
             'idarticle' => $idarticle,
+            'newcontent' => $newcontent,
         ]);
     }
 
     public function updateCategorie(int $idarticle, $newcategorie){
-        $sqlupdate = $this -> db -> prepare("UPDATE articles SET titre = '$newcategorie' WHERE id = :idarticle ");
+        $sqlupdate = $this -> db -> prepare("UPDATE articles SET categorie = '$newcategorie' WHERE id = :idarticle");
         $sqlupdate->execute([
             'idarticle' => $idarticle,
         ]);
