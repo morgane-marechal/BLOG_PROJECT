@@ -7,6 +7,8 @@ require_once ('src/Comments.php');
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
+
+
 }
 
 
@@ -23,10 +25,10 @@ if(isset($_POST['commentaire'])){
 
     $commenter = new Comments();
     $commenter->registerComments($contenu, $date, $id_utilisateur, $id_article);
-
 }
 
-
+$comments = new Comments;
+$comments->displayComments($article->id);
 
 ?>
 <!doctype html>
@@ -65,8 +67,7 @@ require('header.php');
         <p><?= $article->author->bio ?></p>
     </div>
     <div id="content-commentaires">
-        <?php $comments = new Comments;
-            $comments->displayComments($article->id); ?>
+
     </div>
     <div id="container-commentaires">
         <?php if(!isset($_SESSION['utilisateur'])): ?>
