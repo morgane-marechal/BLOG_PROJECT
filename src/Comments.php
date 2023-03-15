@@ -42,17 +42,29 @@ class Comments
 
     }
 
-    public function displayComments($id)
+    public function displayComments()
     {
-        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article
-                FROM commentaires  
-                WHERE commentaires.id_article = $id";
+        $sql = "SELECT commentaires.id, 
+                        commentaires.contenu, 
+                        commentaires.date, 
+                        commentaires.id_utilisateur, 
+                        commentaires.id_article
+                FROM commentaires";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
         return json_encode($results);
     }
 
+    public function displayOneComment()
+    {
+        $sql = "SELECT LAST_INSERT_ID()
+                INTO commentaires";
+        $sql_select = $this->db->prepare($sql);
+        $sql_select->execute();
+        $results = $sql_select->fetch(PDO::FETCH_ASSOC);
+        return json_encode($results);
+    }
 
     /**
      * @return int|null

@@ -30,6 +30,8 @@ if(isset($_POST['commentaire'])){
 
     $commenter = new Comments();
     $commenter->registerComments($contenu, $date, $id_utilisateur, $id_article);
+    echo json_encode(['insert' => true]);
+    die();
 }
 
 $comments = new Comments;
