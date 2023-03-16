@@ -56,6 +56,29 @@ class Comments
         return json_encode($results);
     }
 
+
+    public function manageComment()
+    {
+        //les commentaires sont affichés et triés selon l'article
+        //et la date de publication de l'article, du plus récent au plus ancien
+        $manageComments="SELECT commentaires.id, commentaires.contenu, 
+        articles.titre, utilisateurs.login 
+        from commentaires 
+        inner join articles on commentaires.id_article = articles.id 
+        inner join utilisateurs on commentaires.id_utilisateur = utilisateurs.id
+        ORDER BY articles.id desc";
+        $sql_select = $this->db->prepare($manageComments);
+        $sql_select->execute();
+        $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+    public function deleteComment(int $idDeleteComment){
+        $delete= $this->db->prepare("DELETE from commentaires WHERE id = '$idDeleteComment'");
+        $delete->execute();
+    }
+
+
     /**
      * @return int|null
      */
