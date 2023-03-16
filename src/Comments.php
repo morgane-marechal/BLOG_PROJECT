@@ -28,6 +28,9 @@ class Comments
         }
     }
 
+    /* Méthode qui sert à enregistrer les commentaires en base de données
+        On bind les valeurs placés en paramètres afin de les insérer
+    */
     public function registerComments($contenu, $date, $id_utilisateur, $id_article)
     {
         $sql = "INSERT INTO commentaires  (contenu, date, id_utilisateur, id_article) VALUES (:contenu, :date, :id_utilisateur, :id_article)";
@@ -41,6 +44,7 @@ class Comments
 
     }
 
+    /* Méthode qui permet d'afficher les commentaires d'un article */
     public function displayComments($id)
     {
         $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article
@@ -50,11 +54,6 @@ class Comments
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
         return json_encode($results);
-    }
-
-    public function displayOneComment()
-    {
-
     }
 
     /**

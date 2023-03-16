@@ -35,6 +35,13 @@ class Article
         }
     }
 
+
+    /* Méthode pour enregistrer un article en base de données
+        La méthode attend des paramètres comme l'idUtilisateur, le titre, contenu etc
+        idUtilisateur est égal à l'id session
+        On insert le tout en liant les paramètres entrés à des variables
+        On renvoie un json selon la réussite ou l'échec de l'insert
+    */
     public function registerArticle($idUtilisateur, $titre, $contenu, $date, $categorie, $image)
     {
         $idUtilisateur=$_SESSION['id'];
@@ -58,6 +65,12 @@ class Article
             }
     }
 
+    /* Méthode qui sert à récupérer tous les articles de la base de données
+        On sélectionne les quelques infos de la table articles et utilisateurs
+        On fetch le résultat et on le place dans une variable pour ensuite le return en json
+        Ce json va permettre d'afficher les articles avec le javascript
+
+    */
     public function getArticles()
     {
         $sql = "SELECT articles.id AS article_id, 
@@ -78,10 +91,12 @@ class Article
         return json_encode($results);
     }
 
-    // Fonction qui va permettre de récupérer l'article avec l'ID passé en paramètre
-    // On récupère tout dans la table article, utilisateurs et on donne un alias à id de l'article pour éviter d'être confus
-    // On join la classe utilisateur et l'on dit l'id utilisateur dans la table article est égale à l'id de la table utilisateur
-    // On récupère les infos là où articles.id est égal à l'id qui est récupéré en paramètre de la fonction
+    /* Méthode qui va permettre de récupérer l'article avec l'ID passé en paramètre pour pouvoir l'afficher
+         On récupère tout dans la table article, utilisateurs et on donne un alias à id de l'article pour éviter d'être confus
+         On join la classe utilisateur et l'on dit l'id utilisateur dans la table article est égale à l'id de la table utilisateur
+         On récupère les infos là où articles.id est égal à l'id qui est récupéré en paramètre de la fonction
+         public function getUniqueArticle($id): Article
+    */
     public function getUniqueArticle($id): Article
     {
         $sql = "SELECT articles.*, utilisateurs.*, articles.id AS id
@@ -171,10 +186,17 @@ class Article
         ]);
     }
 
+
+    public function pagination()
+    {
+
+    }
+
     public function deleteArticle(int $idDelete){
         $delete= $this->db->prepare("DELETE from articles WHERE id = '$idDelete'");
         $delete->execute();
     }
+
 
 
 }

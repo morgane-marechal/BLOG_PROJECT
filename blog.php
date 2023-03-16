@@ -3,7 +3,6 @@ session_start();
 require_once ('src/Article.php');
 $article = new Article();
 if (isset($_GET['articles']) && $_GET['articles'] === 'all'){
-
  echo $article->getArticles();
  die();
 }
@@ -29,6 +28,8 @@ require('header.php');
         <h1>Blog</h1>
     </div>
 </div>
+
+<!-- Les articles vont s'afficher dans la section ci-dessous à l'aide de Javascript -->
 <section class="articles">
 
 </section>
