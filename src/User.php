@@ -212,13 +212,13 @@ class User
 
     public function displayUsers()
     {
-        
         $displayUsers = $this->db->prepare("SELECT * FROM utilisateurs");
         $displayUsers->execute([
             //'id' => $id,
         ]);
         $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
         //echo var_dump($result);
+        echo "<h2>Affichage des utilisateurs</h2>";
         for ($i = 0; $i <= (count($result)-1); $i++) {
         echo 
         "<div id='user".$result[$i]['id']." class='user'>

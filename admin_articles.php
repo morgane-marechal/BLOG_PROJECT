@@ -7,6 +7,12 @@
      $manage_articles = new Article();
      $manage_articles->manageArticles();
 
+     if (isset($_GET['delete-article'])){
+        $deleteArticle = new Article();
+        $deleteArticle->deleteArticle((int) $_GET['delete-article']);
+        die();
+    }
+
 ?>
 
 <!-- <form id='admin_article_form' action='' method='post'>
