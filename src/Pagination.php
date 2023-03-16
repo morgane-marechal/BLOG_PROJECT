@@ -1,6 +1,7 @@
 <?php
 
-#[AllowDynamicProperties] class Pagination
+#[AllowDynamicProperties] 
+class Pagination
 {
     public ?int $currentPage = null;
     public ?int $nbrOfPages = null;

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <script defer type="text/javascript" src="app/admin.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="assets/style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css_admin.css" />
         <meta http-equiv="x-ua-compatible" content="IE=edge" />
         <title>Admin</title>
     

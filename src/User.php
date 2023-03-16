@@ -221,30 +221,30 @@ class User
         echo "<h2>Affichage des utilisateurs</h2>";
         for ($i = 0; $i <= (count($result)-1); $i++) {
         echo 
-        "<div id='user".$result[$i]['id']." class='user'>
-        <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
-        <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
-        <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
-        <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
-        <div class='rang' <p> Rang : ".$result[$i]['rangs']."</p></div>
-        <form id='form_role' action='admin.php' method='get'>
-            <label for='role'>Rôle:</label>
-            <select name='role' id='role'>
-                <option value=''>Nouveau rôle :</option>
-                <option value='utilisateur'>Utilisateur</option>
-                <option value='moderateur'>Moderateur</option>
-                <option value='administrateur'>Administrateur</option>
-            </select>
-            
-            <input name='update' id='update' value='".$result[$i]['id']."' readonly>
-        <button type='submit' class='update' id='".$result[$i]['id']."' >Modifier</button>
-        </form>
-        
-            <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
+            "<div class='user' id='user".$result[$i]['id']."' >
+                <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
+                <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
+                <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
+                <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
+                <div class='rang' <p> Rang : ".$result[$i]['rangs']."</p></div>
+                <form id='form_role' action='admin.php' method='get'>
+                <input name='update' class='id_user' id='update' value='".$result[$i]['id']."' readonly>
+                    <label for='role'>Rôle:</label>
+                    <select name='role' id='role'>
+                        <option value=''>Nouveau rôle :</option>
+                        <option value='utilisateur'>Utilisateur</option>
+                        <option value='moderateur'>Moderateur</option>
+                        <option value='administrateur'>Administrateur</option>
+                    </select>
+                <button type='submit' class='update' id='".$result[$i]['id']."' >Modifier</button>
+                </form>
+                <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
+            </div>
         </div>";
-        
         }
     }
+    
+
 
     public function delete(int $idDelete){
         $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
