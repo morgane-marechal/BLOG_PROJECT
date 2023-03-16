@@ -6,13 +6,14 @@ class Article
     public ?int $id = null;
     public ?string $nom = null;
     public ?string $prenom = null;
+
     public ?string $contenu = null;
     public ?string $titre = null;
     public ?string $categorie= null;
     public ?string $date = null;
-     public ?User $author = null;
+    public ?User $author = null;
     public $image;
-    private ?string $idUtilisateur= null;
+    private ?string $idUtilisateur = null;
     private PDO $db;
 
     public function __construct()
@@ -71,8 +72,23 @@ class Article
         Ce json va permettre d'afficher les articles avec le javascript
 
     */
-    public function getArticles()
+
+    /* Méthode pour compter le nombre d'articles en base de données
+    On compte tout dans la table articles
+    On return le résultat de la première colonne du fetch num
+    */
+    function countArticles(): int
     {
+        $sql = "SELECT count(*) FROM articles";
+        $sql_exe = $this->db->prepare($sql);
+        $sql_exe->execute();
+        $results = $sql_exe->fetch(PDO::FETCH_NUM)[0];
+        return (int) $results;
+    }
+
+    public function getArticles(Pagination $pagination)
+    {
+        $offset = $pagination->nbrOfArticlesPerPage * ($pagination->currentPage - 1);
         $sql = "SELECT articles.id AS article_id, 
                 articles.titre AS article_titre, 
                 articles.contenu AS article_contenu, 
@@ -84,11 +100,14 @@ class Article
                 utilisateurs.prenom AS utilisateur_prenom
                 FROM articles
                 INNER JOIN utilisateurs 
-                ON articles.id_utilisateur = utilisateurs.id";
+                ON articles.id_utilisateur = utilisateurs.id
+                ORDER BY date DESC 
+                LIMIT $pagination->nbrOfArticlesPerPage
+                OFFSET $offset";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
-        return json_encode($results);
+        var_dump(count($results));
     }
 
     /* Méthode qui va permettre de récupérer l'article avec l'ID passé en paramètre pour pouvoir l'afficher
@@ -186,18 +205,9 @@ class Article
         ]);
     }
 
-
-    public function pagination()
-    {
-
-    }
-
     public function deleteArticle(int $idDelete){
         $delete= $this->db->prepare("DELETE from articles WHERE id = '$idDelete'");
         $delete->execute();
     }
-
-
-
 }
 ?>  
