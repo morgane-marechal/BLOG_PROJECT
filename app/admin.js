@@ -16,12 +16,10 @@ function fetchDisplay(){
     //e.preventDefault();
     fetch('admin_users.php')
         .then(response => {
-            //console.log(response);
             return response.text();
         })
             .then((content) => {
                 displayUser.innerHTML=content
-                // updateEvent(); mettre fonction pour ajouter event listener
                 updateEvent();
                 deleteEvent();
         })
@@ -39,14 +37,12 @@ let btnTest=document.getElementsByClassName(".del");
             console.log("delete  "+idDelete)
             deleteMe(idDelete);
             fetchDisplay();
-           // window.location.reload();
         })
     }
 
     async function deleteMe(idDelete){
         await fetch(`admin_users.php?delete=${idDelete}`)
         .then((resp)=> {
-            //console.log("reponse deleteMe "+resp)
             return resp.text();
         })
     }
@@ -62,7 +58,6 @@ let btnTest=document.getElementsByClassName(".del");
                 console.log("delete  "+idDelete)
                 deleteMe(idDelete);
                 fetchDisplay();
-            // window.location.reload();
             })
         }
     }
@@ -78,9 +73,7 @@ deleteEvent();
         for (const btnUp of allUp){
             btnUp.addEventListener("click", (e) =>{
             // e.preventDefault();
-                //console.log("update nb "+idUp)
                 fetchDisplay();
-            // window.location.reload();
             })
         }
     }
@@ -98,7 +91,6 @@ function fetchDisplayArticle(){
     //e.preventDefault();
     fetch('admin_articles.php')
         .then(response => {
-            //console.log(response);
             return response.text();
         })
             .then((content) => {
@@ -114,7 +106,6 @@ function updateArticle(){
     for (const btnUpArt of allArt){
         btnUpArt.addEventListener("click", (e) =>{
         // e.preventDefault();
-            //console.log("update nb "+idUp)
             fetchDisplayArticle();
         })
     }
@@ -134,10 +125,8 @@ function deleteArticle(){
         btn.addEventListener("click", (e) =>{
         // e.preventDefault();
             let idDeleteArticle= e.target.id
-            console.log("delete  Article "+idDeleteArticle)
             deleteTheArticle(idDeleteArticle);
             fetchDisplayArticle();
-        // window.location.reload();
         })
     }
 }
@@ -145,9 +134,54 @@ function deleteArticle(){
 async function deleteTheArticle(idDeleteArticle){
     await fetch(`admin_articles.php?delete-article=${idDeleteArticle}`)
     .then((resp)=> {
-        //console.log("reponse deleteMe "+resp)
         return resp.text();
     })
 }
 
 deleteArticle();
+
+// --------------- delete comments----------------------
+const btnComment = document.getElementById("commentaires-button");
+
+btnComment.addEventListener("click", (e) => {
+    fetchDisplayComment();
+})
+
+function fetchDisplayComment(){               
+    //e.preventDefault();
+    fetch('admin_comments.php')
+        .then(response => {
+            return response.text();
+        })
+            .then((content) => {
+                displayUser.innerHTML=content
+                updateArticle();
+                deleteArticle();
+                deleteComment();
+        })
+}
+
+let allDelComments=document.querySelectorAll('.del-comment');
+
+function deleteComment(){
+    let allDelComments=document.querySelectorAll('.del-comment');
+    console.log("allDelComment: "+allDelComments.length);
+    for (const btn of allDelComments){
+        btn.addEventListener("click", (e) =>{
+        // e.preventDefault();
+            let idDeleteComment= e.target.id
+            console.log("delete  Comment "+idDeleteComment)
+            deleteTheComment(idDeleteComment);
+            fetchDisplayComment();
+        // window.location.reload();
+        })
+    }
+}
+
+async function deleteTheComment(idDeleteComment){
+    await fetch(`admin_comments.php?delete-comment=${idDeleteComment}`)
+    .then((resp)=> {
+        //console.log("reponse deleteMe "+resp)
+        return resp.text();
+    })
+}

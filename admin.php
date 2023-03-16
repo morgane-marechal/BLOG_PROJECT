@@ -20,7 +20,8 @@
 
     <div id="buttons-admin">
             <button id="utilisateurs-button">Gestion des utilisateurs</button>
-            <button id="articles-button">Gestion des articles</button>        
+            <button id="articles-button">Gestion des articles</button>
+            <button id="commentaires-button">Gestion des commentaires</button>       
     </div>
 
 

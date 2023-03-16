@@ -157,7 +157,6 @@ class Article
                 <option value='divers'>Divers</option>
                 <option value='jsepa'>Je ne sais pas</option>
         </select>
-
         <input class='updateArticle' id='submit' name='submit' type='submit' value='Appliquer le changement'>
         </form>
         <button type='submit' class='del-article' id='".$results[$i]['id']."' href=admin_articles.php?delete-article=".$results[$i]['id']." >Supprimer l'article</button>";
