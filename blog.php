@@ -1,11 +1,15 @@
 <?php
 session_start();
 require_once ('src/Article.php');
+require_once ('src/Pagination.php');
+
 $article = new Article();
 if (isset($_GET['articles']) && $_GET['articles'] === 'all'){
  echo $article->getArticles();
  die();
 }
+
+//$currentPage = (int) $_GET['page'];
 ?>
 <!doctype html>
 <html lang="fr">
