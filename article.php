@@ -5,7 +5,7 @@ require_once ('src/User.php');
 require_once ('src/Comments.php');
 
 // Si GET['ID'] est set alors on instancie un nouvel objet article de la classe Article()
-// On appelle la fonction getUniqueArticle qui possède l'ID DE l'article afin d'afficher cette article en particulier
+// On appelle la fonction getUniqueArticle qui possède l'ID DE l'article afin d'afficher cet article en particulier
 if (isset($_GET['id'])) {
     $article = new Article();
     $article = $article->getUniqueArticle($_GET['id']);
@@ -33,9 +33,6 @@ if(isset($_POST['commentaire'])){
     echo json_encode(['insert' => true]);
     die();
 }
-
-
-
 ?>
 <!doctype html>
 <html lang="fr">
@@ -55,21 +52,27 @@ require('header.php');
 <section class="article">
     <article>
         <div id="container-categorie">
+            <!-- Appel de la catégorie avec PHP -->
             <span id="categorie-unique-article"><?= $article->categorie ?></span>
         </div>
         <div id="container-titre">
+            <!-- Appel du titre avec PHP -->
             <h1><?= $article->titre ?></h1>
         </div>
         <div id="container-image">
+            <!-- Appel de l'image avec PHP -->
             <img id="image-article-unique" src="./images/<?=$article->image?>">
         </div>
+        <!-- Appel du contenu avec PHP -->
         <div id="contenu-unique-article"><?= $article->contenu ?></div>
         <div id="container-info">
+            <!-- Appel de la date, du nom et prénom de l'auteur avec PHP -->
             <span id="info-unique-article">Publié le <?= $article->date ?> par <?= $article->prenom ?> <?= $article->nom ?></span>
         </div>
     </article>
     <div id="auteur">
         <h3 id="titre-auteur">A propos de l'auteur</h3>
+        <!-- Appel de la bio avec PHP -->
         <p><?= $article->author->bio ?></p>
     </div>
     <div id="content-commentaires">

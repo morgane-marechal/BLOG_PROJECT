@@ -30,6 +30,12 @@ class User
         }
     }
 
+    /* Méthode d'enregistrement de l'utilisateur
+        Si l'utilisateur n'existe pas (verifUser = false) alors on lance la requête
+        On insert en BDD login, prenom, nom, password, rangs et biographie
+        On lie les variables
+        Si $sql_exe = true alors on acho un message de réussite et on envoie vers page connexion
+    */
     public function register($login, $prenom, $nom, $password, $rangs, $bio)
     {
         if (!$this->verifUser()) {
@@ -46,6 +52,7 @@ class User
             ]);
 
             if ($sql_exe) {
+                header("Refresh:2; url=connexion.php");
                 echo json_encode(['response' => 'ok', 'reussite' => 'Inscription réussie.']);
             } else {
                 echo json_encode(['response' => 'not ok', 'echoue' => 'L\'inscription a échoué.']);
@@ -55,6 +62,11 @@ class User
         }
     }
 
+    /* Méthode qui permet de vérifier que l'utilisateur existe ou non en BDD
+        On vérifie si le login est déjà présent dans la base de données
+        Si $results possède une correspondance on return true sinon false
+        On appelle la fonction dans la fonction register pour vérifier avant d'insérer ou non
+    */
     public function verifUser()
     {
         if ($_POST['prenom'] && $_POST['nom'] && $_POST['login'] > 3) {
@@ -78,6 +90,13 @@ class User
         }
     }
 
+    /* La méthode connection permet à l'utilisateur de se connecter
+        On récupère tout ce qui est dans la table utilisateur là où le login = login entré
+        On le met le résultat de la recherche en BDD dans un tableau associatif
+        Si results est true (existe) alors on vérifie le mot de passe, si c'est true alors
+        On lance une session, initialise des variables de SESSION et renvoie un json + redirection
+        Sinon on return un json echec
+    */
     public function connection($login, $password)
     {
         $sql = "SELECT * 
@@ -106,14 +125,10 @@ class User
         }
     }
 
-    public function isConnected()
-    {
-        if(isset($_SESSION['login'])){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    /* Méthode pour récupérer toutes les informations de l'utilisateur
+        On récupère toutes les informations de l'utilisateur là où l'id est égal à l'id de session
+        On fetch le résultat pour ensuite donner des valeurs à des variables globales du nom, prenom, login et pass
+    */
     public function getAllInfos()
     {
         $id = $_SESSION['id'];
@@ -128,7 +143,7 @@ class User
         $_SESSION['password'] = $result['password'];
     }
 
-    //methode update login
+    //Méthode update login
     public function setLogin($newlogin){
         $login=$_SESSION['login']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
         $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET login = '$newlogin' WHERE login = :login ");
@@ -139,7 +154,7 @@ class User
         return "Vous avez changé votre login mis à jour votre profil.<br>";
     }
 
-    //methode update nom
+    // Méthode update nom
     public function setNom($newnom){
         $nom=$_SESSION['nom']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
         $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET nom = '$newnom' WHERE nom = :nom ");
@@ -150,7 +165,7 @@ class User
         return "Vous avez changer votre nom et mis à jour votre profil.<br>";
     }
 
-    //methode update prenom
+    //methode update prénom
     public function setPrenom($newprenom){
         $prenom=$_SESSION['prenom']; //<- la fonction update ne fonctionne qui si un utilisateur est connecté
         $sqlupdate = $this -> db -> prepare("UPDATE utilisateurs SET prenom = '$newprenom' WHERE prenom = :prenom ");
@@ -161,7 +176,7 @@ class User
         return "Vous avez changer votre prenom et mis à jour votre profil.<br>";
     }
 
-    //methode update mot de passe
+    // Méthode update mot de passe
     public function setPassword($newpassword){
         $password=$_SESSION['password'];
         $newpassword = password_hash($password, PASSWORD_BCRYPT); 
