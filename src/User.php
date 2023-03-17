@@ -222,14 +222,14 @@ class User
         for ($i = 0; $i <= (count($result)-1); $i++) {
         echo 
             "<div class='user' id='user".$result[$i]['id']."' >
-                <div class = 'id'> <p>Id : ".$result[$i]['id']."</p></div>
-                <div class = 'login'> <p>Login : ".$result[$i]['login']."</p></div>
-                <div class= 'nom'> <p> Nom : ".$result[$i]['nom']."</p></div> 
-                <div class='prenom' <p> Prénom : ".$result[$i]['prenom']."</p></div>
-                <div class='rang' <p> Rang : ".$result[$i]['rangs']."</p></div>
+                <div class = 'id'> Id : ".$result[$i]['id']."</div>
+                <div class = 'login'> Login : ".$result[$i]['login']."</div>
+                <div class= 'nom'>  Nom : ".$result[$i]['nom']."</div> 
+                <div class='prenom'> Prénom : ".$result[$i]['prenom']."</div>
+                <div class='rang'> Rang : ".$result[$i]['rangs']."</div>
                 <form id='form_role' action='admin.php' method='get'>
-                <input name='update' class='id_user' id='update' value='".$result[$i]['id']."' readonly>
-                    <label for='role'>Rôle:</label>
+                <input type='hidden' name='update' class='id_user' id='update' value='".$result[$i]['id']."' readonly>
+                    <label for='role'></label>
                     <select name='role' id='role'>
                         <option value=''>Nouveau rôle :</option>
                         <option value='utilisateur'>Utilisateur</option>
@@ -238,7 +238,7 @@ class User
                     </select>
                 <button type='submit' class='update' id='".$result[$i]['id']."' >Modifier</button>
                 </form>
-                <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer</button>
+                <button type='submit' class='del' id='".$result[$i]['id']."' href=admin.php?delete=".$result[$i]['id']." >Supprimer l'utilisateur</button>
             </div>
         </div>";
         }

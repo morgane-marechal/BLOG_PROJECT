@@ -161,12 +161,12 @@ class Article
         //var_dump($results);
         echo "<h2>Modération des articles</h2>";
         for ($i = 0; $i <= (count($results)-1); $i++) {
-        echo " <form id='admin_article_form' action='' method='get'>
-        <input name='id_article' id='id_article' value='".$results[$i]['id']."' readonly>
+        echo " <form class='admin-article' id='admin_article_form' action='' method='get'>
+        <input type='hidden' name='id_article' id='id_article' value='".$results[$i]['id']."' readonly>
         <label for='newtitre'>Titre</label>
         <input type='text' name='newtitre' id='newtitre' value=".$results[$i]['titre']." minlength='3'>
-        <label for='contenu'>Contenu</label>
-            <textarea name='contenu' value=".$results[$i]['contenu'].">".$results[$i]['contenu']."</textarea>
+        <p><label for='contenu'>Contenu</label></p>
+        <p><textarea name='contenu' class='manage-content' value=".$results[$i]['contenu'].">".$results[$i]['contenu']."</textarea></p>
         <label for='categorie'>Catégorie</label>
         <select name='categorie' id='categorie'>
                 <option value=''>".$results[$i]['categorie']."</option>
