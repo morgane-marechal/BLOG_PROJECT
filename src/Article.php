@@ -168,7 +168,9 @@ class Article
         $sql_select = $this->db->prepare($managearticles);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
         //var_dump($results);
+        /*
         echo "<h2>Modération des articles</h2>";
         for ($i = 0; $i <= (count($results)-1); $i++) {
         echo " <form class='admin-article' id='admin_article_form' action='' method='get'>
@@ -189,7 +191,7 @@ class Article
         <input class='updateArticle' id='submit' name='submit' type='submit' value='Appliquer le changement'>
         </form>
         <button type='submit' class='del-article' id='".$results[$i]['id']."' href=admin_articles.php?delete-article=".$results[$i]['id']." >Supprimer l'article</button>";
-        }
+        }*/
     }
 
     public function updateTitre(int $idarticle, $newtitre){
