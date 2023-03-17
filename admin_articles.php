@@ -20,7 +20,7 @@
         <form class='admin-article' id='admin_article_form' action='' method='get'>
         <input type='hidden' name='id_article' id='id_article' value='<?=$display_articles[$i]['id']?>' readonly>
         <label for='newtitre'>Titre</label>
-        <input type='text' name='newtitre' id='newtitre' value='<?=$display_articles[$i]['titre']?>' minlength='3'>
+        <input type='text' name='newtitre' id='newtitre' class='titre_article' value='<?=$display_articles[$i]['titre']?>' minlength='3'>
         <p><label for='contenu'>Contenu</label></p>
         <p><textarea name='contenu' class='manage-content' value='<?=$display_articles[$i]['contenu']?>' ><?=$display_articles[$i]['contenu']?>'</textarea></p>
         <label for='categorie'>Catégorie</label>
@@ -37,24 +37,7 @@
         <button type='submit' class='del-article' id='<?=$display_articles[$i]['id']?>' href=admin_articles.php?delete-article=<?=$display_articles[$i]['id']?> >Supprimer l'article</button>
 <?php } ?>
 
-<!-- <form id='admin_article_form' action='' method='post'>
-    <h3>Modération des articles</h3>
-    <label for='newtitre'>Titre</label>
-    <input type='text' name='newtitre' id='newtitre' value='mettre titre' minlength='3'>
-    <label for='contenu'>Contenu
-        <textarea name='contenu' value='mettre contenu'></textarea>
-    </label>
-    <select name='categorie' id='categorie'>
-            <option value=''>Choisir une catégorie pour l'article :</option>
-            <option value='reconversion'>Reconversion</option>
-            <option value='autoformation'>Autoformation</option>
-            <option value='actu'>Actu</option>
-            <option value='divers'>Divers</option>
-            <option value='jsepa'>Je ne sais pas</option>
-    </select>
 
-    <input class='submit' id='submit' name='submit' type='submit' value='Appliquer le changement'>
-</form> -->
 </body>
 </html>
 
