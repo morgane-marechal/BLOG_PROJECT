@@ -88,27 +88,37 @@ class Article
 
     public function getArticles(Pagination $pagination)
     {
-        $offset = $pagination->nbrOfArticlesPerPage * ($pagination->currentPage - 1);
+        $offset = intval($pagination->nbrOfArticlesPerPage) * intval(($pagination->currentPage - 1));
         $sql = "SELECT articles.id AS article_id, 
-                articles.titre AS article_titre, 
-                articles.contenu AS article_contenu, 
-                articles.image AS article_image, 
-                articles.categorie AS article_categorie, 
-                articles.date AS article_date, 
-                utilisateurs.id AS utilisateur_id, 
-                utilisateurs.nom AS utilisateur_nom, 
-                utilisateurs.prenom AS utilisateur_prenom
-                FROM articles
-                INNER JOIN utilisateurs 
-                ON articles.id_utilisateur = utilisateurs.id
-                ORDER BY date DESC 
-                LIMIT $pagination->nbrOfArticlesPerPage
-                OFFSET $offset";
+            articles.titre AS article_titre, 
+            articles.contenu AS article_contenu, 
+            articles.image AS article_image, 
+            articles.categorie AS article_categorie, 
+            articles.date AS article_date, 
+            utilisateurs.id AS utilisateur_id, 
+            utilisateurs.nom AS utilisateur_nom, 
+            utilisateurs.prenom AS utilisateur_prenom
+            FROM articles
+            INNER JOIN utilisateurs 
+            ON articles.id_utilisateur = utilisateurs.id
+            ORDER BY date DESC 
+            LIMIT $pagination->nbrOfArticlesPerPage
+            OFFSET $offset";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
-        var_dump(count($results));
+
+//        $art = new Article();
+//        $art->contenu = $results['article_contenu'];
+//        $art->titre = $results['article_titre'];
+//        $art->image = $results['article_image'];
+//        $art->categorie = $results['article_categorie'];
+//        $art->nom = $results['article_categorie'];
+
+        //return json_encode($results);
+        return $results;
     }
+
 
     /* Méthode qui va permettre de récupérer l'article avec l'ID passé en paramètre pour pouvoir l'afficher
          On récupère tout dans la table article, utilisateurs et on donne un alias à id de l'article pour éviter d'être confus

@@ -3,7 +3,7 @@
 #[AllowDynamicProperties] 
 class Pagination
 {
-    public ?int $currentPage = null;
+    public $currentPage = null;
     public ?int $nbrOfPages = null;
     public ?int $nbrOfArticles = null;
     public ?int $nbrOfArticlesPerPage = 5;
@@ -31,6 +31,8 @@ class Pagination
     function countPages()
     {
         $this->nbrOfPages = ceil( $this->nbrOfArticles / $this->nbrOfArticlesPerPage);
+
+        return $this->nbrOfPages;
     }
 }
 

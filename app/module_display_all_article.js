@@ -1,10 +1,22 @@
 const containerArticles = document.querySelector('.articles');
 
-fetch('blog.php?articles=all')
+let urlParam = window.location.search;
+let param = new URLSearchParams(urlParam);
+let page;
+
+if (param.get('page') === null){
+    page = 1;
+}else{
+    page = param.get('page');
+}
+fetch(`get_articles.php?page=${page}`)
     .then((response) => {
+        // return response.text();
         return response.json()
     })
     .then((articles) => {
+        //articles = JSON.parse(articles);
+
         for (i = 0; i < articles.length; i++) {
             const newArticle = document.createElement('article');
             const newTitle = document.createElement('h2');

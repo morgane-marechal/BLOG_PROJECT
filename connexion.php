@@ -29,13 +29,14 @@ if (!empty($_POST['login']) && !empty($_POST['password'])) {
 <?php require_once ('header.php')?>
 </body>
 </html>
-
 <h2 class="title-form">Connexion</h2>
-<form id="form-connection" method="post">
-    <label for="login"></label>
-    <input id="login" name="login" type="text" placeholder="Login" required>
-    <label for="prenom"></label>
-    <label for="password"></label>
-    <input id="password" name="password" type="password" placeholder="mot de passe" required>
-    <button type="submit" class="register_form_button" id="envoie" name="envoie">Se connecter</button>
-</form>
+<div class="container-connexion">
+    <form id="form-connection" method="post">
+        <label for="login"></label>
+        <input id="login" name="login" type="text" placeholder="Login" required>
+        <label for="prenom"></label>
+        <label for="password"></label>
+        <input id="password" name="password" type="password" placeholder="mot de passe" required>
+        <button type="submit" class="register_form_button" id="envoie" name="envoie">Se connecter</button>
+    </form>
+</div>

@@ -437,6 +437,40 @@ article {
     display: flex;
 }
 
+/* FORM CONNECTION */
+
+.container-connexion, .container-register {
+    display: flex;
+    justify-content: center;
+}
+
+#form-connection, #form-register {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-form {
+    text-align: center;
+
+}
+
+.control {
+    display: flex;
+    justify-content: center;
+}
+
+.control a {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: black;
+}
+.control a[disabled] {
+    pointer-events: none;
+    text-decoration: none;
+    color: gray;
+}
 
 /* DESKTOP */
 
