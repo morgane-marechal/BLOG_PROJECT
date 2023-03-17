@@ -46,28 +46,6 @@ require('header.php');
 
 <!-- Les articles vont s'afficher dans la section ci-dessous à l'aide de Javascript -->
 <section class="articles">
-    <?php
-//if($_GET['page'] === null){
-////    $_GET['page'] = 1;
-////    print_r($articles->getArticles($paginate));
-////    echo $articles->contenu;
-////    }
-//
-//    $allArticles = $articles->getArticles($paginate);
-//    foreach ($allArticles as $article) {
-//        $articleId = $article['article_id'];
-//        $articleTitre = $article['article_titre'];
-//
-//        echo "articleId ==> " . $articleId . " articleTitre ==> " . $articleTitre . "<br>";
-////        print_r($articleId);
-//
-//        // print_r($article);
-//    }
-
-//    print_r($articles->getArticles($paginate));
-//    echo $articles->contenu;
-?>
-
 
 </section>
 <div class="control">

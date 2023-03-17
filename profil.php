@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+if(!isset($_SESSION['utilisateur'])){
+    header('Location: connexion.php');
+}?>
 
 <head>
     <meta charset="utf-8"/>

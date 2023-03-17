@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+if($_SESSION['rangs'] !== 'administrateur'){
+    header('Location: index.php');
+}?>
 
 <head>
     <meta charset="utf-8"/>

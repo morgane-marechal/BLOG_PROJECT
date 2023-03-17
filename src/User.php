@@ -115,6 +115,7 @@ class User
                 session_start();
                 $_SESSION['id'] = $results['id'];
                 $_SESSION['utilisateur'] = $results['login'];
+                $_SESSION['rangs'] = $results['rangs'];
                 echo json_encode(['response' => 'ok', 'reussite' => 'connexion réussie']);
                 header('Location: profil.php');
                 die();
