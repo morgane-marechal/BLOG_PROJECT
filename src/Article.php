@@ -168,28 +168,8 @@ class Article
         $sql_select = $this->db->prepare($managearticles);
         $sql_select->execute();
         $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
-        //var_dump($results);
-        echo "<h2>Modération des articles</h2>";
-        for ($i = 0; $i <= (count($results)-1); $i++) {
-        echo " <form class='admin-article' id='admin_article_form' action='' method='get'>
-        <input type='hidden' name='id_article' id='id_article' value='".$results[$i]['id']."' readonly>
-        <label for='newtitre'>Titre</label>
-        <input type='text' name='newtitre' id='newtitre' value=".$results[$i]['titre']." minlength='3'>
-        <p><label for='contenu'>Contenu</label></p>
-        <p><textarea name='contenu' class='manage-content' value=".$results[$i]['contenu'].">".$results[$i]['contenu']."</textarea></p>
-        <label for='categorie'>Catégorie</label>
-        <select name='categorie' id='categorie'>
-                <option value=''>".$results[$i]['categorie']."</option>
-                <option value='reconversion'>Reconversion</option>
-                <option value='autoformation'>Autoformation</option>
-                <option value='actu'>Actu</option>
-                <option value='divers'>Divers</option>
-                <option value='jsepa'>Je ne sais pas</option>
-        </select>
-        <input class='updateArticle' id='submit' name='submit' type='submit' value='Appliquer le changement'>
-        </form>
-        <button type='submit' class='del-article' id='".$results[$i]['id']."' href=admin_articles.php?delete-article=".$results[$i]['id']." >Supprimer l'article</button>";
-        }
+        return $results;
+
     }
 
     public function updateTitre(int $idarticle, $newtitre){
