@@ -1,15 +1,26 @@
 <?php
 session_start();
-require_once ('src/Article.php');
-require_once ('src/Pagination.php');
+require_once('src/Pagination.php');
+require_once('src/Article.php');
 
-$article = new Article();
-if (isset($_GET['articles']) && $_GET['articles'] === 'all'){
- echo $article->getArticles();
- die();
-}
+// Instance de la classe Article et Pagination
+$articles = new Article();
+$paginate = new Pagination();
 
-//$currentPage = (int) $_GET['page'];
+/* On récupère :
+    la currentPage
+    le nombre d'articles par pages
+    le nombre d'articles en base de données
+*/
+$paginate->currentPage = $_GET['page'] ?? 1;
+$paginate->nbrOfArticlesPerPage = 5;
+$paginate->nbrOfArticles = $articles->countArticles();
+
+$paginate->countPages();
+
+$currentPage = $paginate->currentPage;
+$lastPage = $paginate->countPages();
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -35,7 +46,33 @@ require('header.php');
 
 <!-- Les articles vont s'afficher dans la section ci-dessous à l'aide de Javascript -->
 <section class="articles">
+    <?php
+//if($_GET['page'] === null){
+////    $_GET['page'] = 1;
+////    print_r($articles->getArticles($paginate));
+////    echo $articles->contenu;
+////    }
+//
+//    $allArticles = $articles->getArticles($paginate);
+//    foreach ($allArticles as $article) {
+//        $articleId = $article['article_id'];
+//        $articleTitre = $article['article_titre'];
+//
+//        echo "articleId ==> " . $articleId . " articleTitre ==> " . $articleTitre . "<br>";
+////        print_r($articleId);
+//
+//        // print_r($article);
+//    }
+
+//    print_r($articles->getArticles($paginate));
+//    echo $articles->contenu;
+?>
+
 
 </section>
+<div class="control">
+    <a href="/blog-js/blog.php?page=<?= $currentPage - 1 ?>" <?= $currentPage == 1 ? 'disabled' : ''?>>Page Précédente</a>
+    <a href="/blog-js/blog.php?page=<?= $currentPage + 1 ?>" <?= $currentPage == $lastPage? 'disabled' : ''?>>Page Suivante</a>
+</div>
 </body>
 </html>
