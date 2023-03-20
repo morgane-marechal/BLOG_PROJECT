@@ -9,8 +9,17 @@
 ?>
 
      <h2>Affichage des utilisateurs</h2>
-<?php    for ($i = 0; $i <= (count($result)-1); $i++) { ?>
+<?php    for ($i = 0; $i <= (count($result)-1); $i++) { 
+     if ($result[$i]['id']===$_SESSION['id']){ ?>
+        <div class='user' id='user<?=$result[$i]['id']?>' >
+             <div class = 'id'> Id :<?=$result[$i]['id']?></div>
+             <div class = 'login'> Login : <?=$result[$i]['login']?></div>
+             <div class= 'nom'>  Nom : <?=$result[$i]['nom']?></div> 
+             <div class='prenom'> Prénom : <?=$result[$i]['prenom']?></div>
+             <div class='rang'> Rang : <?=$result[$i]['rangs']?></div>
+        </div>
      
+    <?php  }else{ ?>    
          <div class='user' id='user<?=$result[$i]['id']?>' >
              <div class = 'id'> Id :<?=$result[$i]['id']?></div>
              <div class = 'login'> Login : <?=$result[$i]['login']?></div>
@@ -31,6 +40,7 @@
              <button type='submit' class='del' id='<?=$result[$i]['id']?>' href=admin.php?delete=<?=$result[$i]['id']?> >Supprimer l'utilisateur</button>
          </div>
      </div>
+     <?php } ?>
 <?php } ?>
 
 

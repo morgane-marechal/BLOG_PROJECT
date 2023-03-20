@@ -10,7 +10,7 @@ $result_display = $manage_comments->manageComment();
 <?php for ($i = 0; $i <= (count($result_display) - 1); $i++) { ?>
     <div id='id_user' <?= $result_display[$i]['id'] ?> class='id_comment'>
         <div class='titre_commentaire'>
-            Titre : <?= $result_display[$i]['titre'] ?>
+            Titre de l'article : <?= $result_display[$i]['titre'] ?>
         </div>
         <div class='login_commentaire'>
             Auteur : <?= $result_display[$i]['login'] ?>
