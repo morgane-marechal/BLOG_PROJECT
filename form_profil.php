@@ -9,7 +9,6 @@ $article = new Article();
 
 $new_info = new User();
 $new_info->getAllInfos();
-var_dump($new_info);
 
 if ((!empty($_POST)) && $_POST['newlogin']) {
     $newlogin = htmlspecialchars($_POST['newlogin']);
@@ -49,23 +48,25 @@ if ((!empty($_POST)) && $_POST['newpassword']) {
     <title>Profil</title>
 </head>
 <body>
-<form id="profil_form" action="" method="post">
-    <h3>Modification du compte</h3>
-    <label for="newlogin">Login</label>
-    <input type="text" name="newlogin" id="newlogin" placeholder="<?php echo $_SESSION['login'] ?>" minlength="3">
-    <label for="nom">Nom</label>
-    <input type="text" name="nom" id="nom" placeholder="<?php echo $_SESSION['nom'] ?>" minlength="3">
-    <label for="prenom">Prénom</label>
-    <input type="text" name="prenom" id="prenom" placeholder="<?php echo $_SESSION['prenom'] ?>" minlength="3">
-    <label for="biographie">Biographie
-        <textarea name="biographie" placeholder="<?php echo $new_info->getBio() ?>"></textarea>
-    </label>
-    <label for="newpassword">Mot de passe</label>
-    <input type="password" name="newpassword" id="newpassword" placeholder="mot de passe" minlength="3">
+<div class="container-div-profil">
+    <form id="profil_form" action="" method="post">
+        <h2 class="title-form">Modification du compte</h2>
+        <p class="sous-titre-form">Modifier votre compte</p>
+        <label for="newlogin">Login</label>
+        <input type="text" name="newlogin" id="newlogin" placeholder="<?php echo $_SESSION['login'] ?>" minlength="3">
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom" placeholder="<?php echo $_SESSION['nom'] ?>" minlength="3">
+        <label for="prenom">Prénom</label>
+        <input type="text" name="prenom" id="prenom" placeholder="<?php echo $_SESSION['prenom'] ?>" minlength="3">
+        <label for="biographie">Biographie</label>
+        <textarea name="biographie" rows="10" placeholder="<?php echo $new_info->getBio() ?>"></textarea>
+        <label for="newpassword">Mot de passe</label>
+        <input type="password" name="newpassword" id="newpassword" placeholder="mot de passe" minlength="3">
 
-    <input class="submit" id="submit" name="submit" type="submit" value="submit">
-    <i class="small">* Champs obligatoires avec 3 caractères minimum</i>
-</form>
+        <input class="submit" id="submit" name="submit" type="submit" value="Envoyer">
+        <i class="small">* Champs obligatoires avec 3 caractères minimum</i>
+    </form>
+</div>
 </body>
 </html>
 
