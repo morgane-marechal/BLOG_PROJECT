@@ -53,7 +53,7 @@
                 <?php endif; ?>
 
                 <?php if ((isset($_SESSION['rangs']) === ('admin' || 'moderateur')) && (!empty($_SESSION['rangs']))) { ?>
-                        <li><a href=redaction.php>Rédaction</span></a></li>
+                        <li><a href=article_form.php>Rédiger</span></a></li>
                     <?php } ?>
 
                     <?php if ((isset($_SESSION['rangs']) === 'admin') && (!empty($_SESSION['rangs']))) { ?>

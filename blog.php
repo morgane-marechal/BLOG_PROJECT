@@ -49,8 +49,8 @@ require('header.php');
 
 </section>
 <div class="control">
-    <a href="/blog-js/blog.php?page=<?= $currentPage - 1 ?>" <?= $currentPage == 1 ? 'disabled' : ''?>>Page Précédente</a>
-    <a href="/blog-js/blog.php?page=<?= $currentPage + 1 ?>" <?= $currentPage == $lastPage? 'disabled' : ''?>>Page Suivante</a>
+    <a id="btn-previous" href="/blog-js/blog.php?page=<?= $currentPage - 1 ?>" <?= $currentPage == 1 ? 'disabled' : ''?>>Page Précédente</a>
+    <a id="btn-next" href="/blog-js/blog.php?page=<?= $currentPage + 1 ?>" <?= $currentPage == $lastPage? 'disabled' : ''?>>Page Suivante</a>
 </div>
 </body>
 </html>

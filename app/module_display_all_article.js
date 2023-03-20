@@ -11,12 +11,9 @@ if (param.get('page') === null){
 }
 fetch(`get_articles.php?page=${page}`)
     .then((response) => {
-        // return response.text();
         return response.json()
     })
     .then((articles) => {
-        //articles = JSON.parse(articles);
-
         for (i = 0; i < articles.length; i++) {
             const newArticle = document.createElement('article');
             const newTitle = document.createElement('h2');

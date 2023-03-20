@@ -17,13 +17,14 @@ if(!isset($_SESSION['utilisateur'])){
     require('header.php');
     ?>
     <main>
+        <div id="connexion-ok">
+            <?php if (isset($_SESSION['login'])&& !empty($_SESSION['login'])){
+                echo "Vous êtes toujours connecté ".$_SESSION['login'];
+            }
+            ?>
+        </div>
             <div id="profil-form-place"></div>
-            <div id="connexion-ok">
-                <?php if (isset($_SESSION['login'])&& !empty($_SESSION['login'])){
-                        echo "Vous êtes toujours connecté ".$_SESSION['login'];
-                }
-                ?>
-            </div>
+
 </main>
 </body>
 
