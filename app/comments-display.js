@@ -10,7 +10,6 @@ let param = new URLSearchParams(id)
 // On ajoute un écouteur au bouton #envoie-commentaire pour envoyer un commentaire
 // On récupère le contenu du textarea #commentaire et on l'envoie au serveur
 // On récupère le commentaire envoyé et on l'affiche dans la div #content-commentaires
-// On vide le textarea #commentaire
 fetch(`article.php?articleid=${param.get('id')}`)
     .then((response) => {
         return response.json()
@@ -18,11 +17,13 @@ fetch(`article.php?articleid=${param.get('id')}`)
     .then((data) => {
         for (let i = 0; i < data.length; i++) {
             const div = document.createElement('div');
+            const spanInfo = document.createElement('span');
             div.classList.add('commentaire');
             div.innerHTML = data[i]['contenu'];
             commentsDisplay.appendChild(div);
         }
     })
+
 // Ecoute du bouton #envoie-commentaire
 // On récupère le contenu du textarea #commentaire et on l'envoie au serveur
 // On return la promesse au format json
@@ -37,13 +38,14 @@ commentsForm.addEventListener('submit', (ev) => {
         body: commentInput
     })
         .then((response) => {
+            console.log(commentInput.get('commentaire'))
             return commentInput.get('commentaire')
         })
         .then((data) => {
             const divCommentaire = document.createElement('div');
             divCommentaire.classList.add('commentaire');
-            divCommentaire.innerHTML = data;
-            commentsDisplay.appendChild(divCommentaire);
+            divCommentaire.textContent = data;
+
         })
     })
 

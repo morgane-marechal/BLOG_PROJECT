@@ -41,7 +41,6 @@
                 <li><a href="index.php">Accueil</a></li>
                 <?php if (isset($_SESSION['utilisateur'])) { ?>
                     <li><a href="profil.php">Profil</span></a></li>
-                    <li><a href="article_form.php">Rédiger</a></li>
                 <?php } ?>
                 <li><a href="blog.php">Blog</a></li>
                 <?php if (!isset($_SESSION['utilisateur'])) : ?>
