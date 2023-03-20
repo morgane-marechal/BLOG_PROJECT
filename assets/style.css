@@ -503,6 +503,8 @@ textarea {
 .control {
     display: flex;
     justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: .75rem;
 }
 
 .control a {
@@ -682,9 +684,12 @@ textarea {
         margin: 2rem 10rem;
     }
 
+    .control {
+        font-size: 1rem;
+    }
+
+
     /* ARTICLE UNIQUE */
-
-
     #auteur {
         margin: 10px 7rem;
     }
