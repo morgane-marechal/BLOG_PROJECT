@@ -202,7 +202,6 @@ class User
         return $this->bio = $newBio;
     }
 
-
     public function getBio()
     {
         return $this->bio;
@@ -210,7 +209,6 @@ class User
 
     //methode update bio
 
-    
  //display all users for admin
 
     public function displayUsers()
@@ -246,9 +244,6 @@ class User
         </div>";
         }
     }
-    
-
-
     public function delete(int $idDelete){
         $delete= $this->db->prepare("DELETE from utilisateurs WHERE id = '$idDelete'");
         $delete->execute();

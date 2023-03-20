@@ -4,10 +4,7 @@ require_once 'src/User.php';
 require_once 'src/Article.php';
 $bio = new User();
 $article = new Article();
-
-
 ?>
-
 <?php
 
 $new_info = new User();
@@ -16,37 +13,30 @@ var_dump($new_info);
 
 if ((!empty($_POST)) && $_POST['newlogin']) {
     $newlogin = htmlspecialchars($_POST['newlogin']);
-    $update = new User();
-    $update->setLogin($newlogin);
+    $new_info->setLogin($newlogin);
 }
 
 if ((!empty($_POST)) && $_POST['prenom']) {
     $newprenom = htmlspecialchars($_POST['prenom']);
-    $updatePrenom = new User();
-    $updatePrenom->setPrenom($newprenom);
+    $new_info->setPrenom($newprenom);
 }
 
 if ((!empty($_POST)) && $_POST['nom']) {
     $newnom = htmlspecialchars($_POST['nom']);
-    $updateNom = new User();
-    $updateNom->setNom($newnom);
+    $new_info->setNom($newnom);
 }
 
 if ((!empty($_POST)) && $_POST['biographie']) {
     $newBio = htmlspecialchars($_POST['biographie']);
-    $updateBio = new User();
-    $updateBio->setBio($newBio);
+    $new_info->setBio($newBio);
 }
 
 if ((!empty($_POST)) && $_POST['newpassword']) {
     $newpassword = htmlspecialchars($_POST['newpassword']);
-    $updatePW = new User();
-    $updatePW->setPassword($newpassword);
+    $new_info->setPassword($newpassword);
 }
 
 ?>
-
-
 
 <!doctype html>
 <html lang="fr">
