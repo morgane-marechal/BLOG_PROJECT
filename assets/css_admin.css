@@ -442,47 +442,78 @@ body {
 @media (orientation: portrait) {
     header {
         width: 100%;
-        height: 100px;
+        height: 150px;
         background: #ffffff;
         border-bottom: 1px solid black;
         border-top: 2px solid gray;
+        padding-top:30px;
     }
 
     .burger {
         display: block;
+        margin:0px 30px 60px 30px;
     }
 
+    .bar{
+        display:block;
+        width: 100px;
+        height: 6px;
+        margin: 15px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: #232419;
+    }
+    
+    .bar:nth-child(1).active{
+        background-color: #c73d3d;
+    }
+    .bar:nth-child(3).active{
+        background-color: #50a7ad;
+    }
+    
+    .burger.active {
+        position: relative;
+        z-index: 101;
+    }
+    
+    .burger.active .bar:nth-child(2){
+        opacity: 0;
+    }
+    
+    .burger.active .bar:nth-child(1){
+        transform: translateY(30px) rotate(45deg);
+    }
+    
+    .burger.active .bar:nth-child(3){
+        transform: translateY(-12px) rotate(-45deg);
+    }
     .ul_nav {
         display: block;
+        padding:5%0%0%0%;
     }
 
-    .ul_nav_desktop {
-        display: flex;
-        display:none;
-        list-style: none;
-        font-family: 'Nunito', sans-serif;
-    }
 
-    .ul_nav_desktop>li {
-        margin: 0 10px;
+    .ul_nav li {
         align-self: center;
     }
 
-    .ul_nav_desktop a {
+    .ul_nav li a {
         text-decoration: none;
-        color: black;
+        color: rgb(255, 255, 255);
+        font-size: 4em;
+        margin:10%0%;
     }
 
     .btn-register,
     .btn-connection,
     .btn-deconnection {
         padding: 8px;
-        width: 105px;
-        margin: 0;
+        margin: 10%;
     }
 
     .btn-deconnection {
-        width: 100px;
+        width: 400px;
+        font-size: 1em;
         border: 1px solid white;
         border-radius: 3px;
         background: black;
