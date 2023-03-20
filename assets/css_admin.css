@@ -379,6 +379,10 @@ body {
     cursor: pointer
 }
 
+.admin-article label{
+    font-family: 'Nunito', sans-serif;
+}
+
 .admin-article .manage-content:hover {
     border: solid 1px white;
     cursor: pointer;
@@ -660,12 +664,8 @@ body {
         width: 100%;
     }
     
-    
-    
     .admin-article .titre_article {
-        background-color: #373828;
-        color: #ffffff;
-        padding: 1%;
+        padding: 1%0%1%5%;
         margin: 1%;
         border: none;
         font-size: 2.5em;
@@ -723,15 +723,16 @@ body {
     .id_comment {
         background-color: #232419;
         color: #ffffff;
-        padding: 1%;
-        margin: 1%;
+        padding: 4%;
+        margin: 2%;
         border: solid 1px white;
         font-size: 1em;
         transition: border 1s ease;
+        text-align: justify;
     }
     
     .titre_commentaire, .login_commentaire, .contenu_commentaire{
-        margin: 0%0%1%0%;
+        margin: 2%0%2%0%;
     }
     
     .del-comment {
@@ -742,6 +743,7 @@ body {
         margin: 1%0%1%0%;
         text-transform: uppercase;
         transition: background-color 1s ease;
+        font-size: 2.5em;
     }
     
     .del-comment:hover {
