@@ -188,16 +188,10 @@ class User
         $_SESSION['password'] = $newpassword;
         return "Vous avez changé votre mot de passe et mis à jour votre profil.<br>";
     }
-    
-     public function getBio()
-    {
-        return $this->bio;
-    }
 
-    //methode update bio
-    public function setBio(?string $bio)
+    public function setBio($bio)
     {
-        $id = $this->id;
+        $id = $_SESSION['id'];
         $newBio = htmlspecialchars($bio);
         $sql = "UPDATE utilisateurs SET bio = :bio WHERE id = :id";
         $stmt = $this->db->prepare($sql);
@@ -205,9 +199,17 @@ class User
             'bio' => $newBio,
             'id' => $id,
         ]);
-        $this->bio = $newBio;
+        return $this->bio = $newBio;
     }
-    
+
+
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    //methode update bio
+
     
  //display all users for admin
 
