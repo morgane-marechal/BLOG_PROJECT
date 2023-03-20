@@ -590,11 +590,7 @@ body {
         margin:2%0%2%0%;
     }
     
-    .user .del:hover {
-        background-color: rgb(75, 9, 9);
-        cursor: pointer;
-        border: none;
-    }
+
     
     .user .update {
         background-color: #232419;
@@ -615,12 +611,15 @@ body {
         padding: 0%;
         margin: 1%0%1%0%;
     }
+
+    /*AFFICHAGE DES ARTICLES DANS PANNEAU ADMIN*/
     
     .admin-article {
-        width: 98%;
-        padding: 1%;
-        border: solid 1px;
-        margin: 1%;
+        margin-top:5%;
+    }
+
+    .admin-article label{
+        font-size: 2.5em;
     }
     
     .updateArticle {
@@ -629,6 +628,7 @@ body {
         border: solid 1px;
         padding: 1%;
         margin: 1%0%2%0%;
+        font-size: 2.5em;
         text-transform: uppercase;
     }
     
@@ -640,15 +640,18 @@ body {
     
     .del-article {
         background-color: #232419;
+        font-size: 2.5em;
         color: #fff;
         border: solid 1px;
         padding: 1%;
         margin: 0%0%2%1%;
         text-transform: uppercase;
+        color:rgb(255, 52, 52);
+        font-weight: 600;
     }
     
     .del-article:hover {
-        background-color: #000000;
+        background-color: rgb(75, 9, 9);
         color: #ffffff;
         cursor: pointer;
     }
@@ -657,7 +660,7 @@ body {
         width: 100%;
     }
     
-    /*AFFICHAGE DES ARTICLES DANS PANNEAU ADMIN*/
+    
     
     .admin-article .titre_article {
         background-color: #373828;
@@ -665,8 +668,9 @@ body {
         padding: 1%;
         margin: 1%;
         border: none;
-        font-size: 1em;
+        font-size: 2.5em;
         transition: border 1s ease;
+        font-family: 'Nunito', sans-serif;
     }
     
     .admin-article .titre_article:hover {
@@ -682,16 +686,18 @@ body {
         width: 94%;
         height: 25%;
         border: none;
+        font-size: 2em;
     }
     
     .admin-article select {
         background-color: #373828;
         color: #ffffff;
         padding: 1%;
-        margin: 1%3%1%2%;
-        font-size: 1em;
+        margin: 1%3%1%5%;
+        font-size: 2.5em;
         border: none;
-        cursor: pointer
+        cursor: pointer;
+        font-family: 'Nunito', sans-serif;
     }
     
     .admin-article .manage-content:hover {
@@ -701,6 +707,7 @@ body {
     
     .updateArticle {
         transition: background-color 1s ease;
+        font-size: 2em;
     }
     
     .updateArticle:hover {
@@ -708,14 +715,8 @@ body {
         border: none;
     }
     
-    .del-article {
-        transition: background-color 1s ease;
-    }
-    
-    .del-article:hover {
-        background-color: rgb(75, 9, 9);
-        border: none;
-    }
+
+
     
     /*AFFICHAGE DES COMMENTAIRES DANS PANNEAU ADMIN*/
     
