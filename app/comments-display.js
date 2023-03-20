@@ -21,9 +21,9 @@ fetch(`article.php?articleid=${param.get('id')}`)
             div.classList.add('commentaire');
             div.innerHTML = data[i]['contenu'];
             commentsDisplay.appendChild(div);
-
         }
     })
+
 // Ecoute du bouton #envoie-commentaire
 // On récupère le contenu du textarea #commentaire et on l'envoie au serveur
 // On return la promesse au format json
@@ -38,12 +38,14 @@ commentsForm.addEventListener('submit', (ev) => {
         body: commentInput
     })
         .then((response) => {
+            console.log(commentInput.get('commentaire'))
             return commentInput.get('commentaire')
         })
         .then((data) => {
             const divCommentaire = document.createElement('div');
             divCommentaire.classList.add('commentaire');
-            divCommentaire.innerHTML = data;
-        }
+            divCommentaire.textContent = data;
+
+        })
     })
 
