@@ -71,7 +71,7 @@ require('header.php');
         </div>
     </article>
     <div id="auteur">
-        <h3 id="titre-auteur">A propos de l'auteur</h3>
+        <h3 id="titre-auteur"><?= $article->prenom . " " . $article->nom ?></h3>
         <!-- Appel de la bio avec PHP -->
         <p><?= $article->author->bio ?></p>
     </div>

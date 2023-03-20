@@ -212,7 +212,7 @@ textarea {
 #categorie {
     width: 70%;
 }
-#envoie, #envoie-commentaire {
+#envoie-commentaire {
     align-self: center;
     margin-top: 20px;
     padding: 5px;
@@ -222,6 +222,19 @@ textarea {
     background: #232419;
     color: #ffffff;
     cursor: pointer;
+}
+
+.register_form_button {
+    align-self: center;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    background: #232419;
+    color: #ffffff;
+    cursor: pointer;
+    overflow-wrap: break-word;
 }
 
 /* TITLE PAGE */
@@ -382,7 +395,7 @@ article {
     margin: 10px 30px;
     text-align: justify;
     line-height: 1.7;
-    border: 2px solid black;
+    background-color: #efefef;
     padding: 30px 20px;
 }
 
@@ -439,19 +452,61 @@ article {
 
 /* FORM CONNECTION */
 
-.container-connexion, .container-register {
+.container-div {
     display: flex;
     justify-content: center;
+    width: 85%;
+    margin-top: 40px;
+    padding: 10px;
+    box-shadow: 1px 2px 5px 3px rgba(0,0,0,0.23);
+    -webkit-box-shadow: 1px 2px 5px 3px rgba(0,0,0,0.23);
+    -moz-box-shadow: 1px 2px 5px 3px rgba(0,0,0,0.23);
+}
+
+#splash-pic {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 #form-connection, #form-register {
     display: flex;
+    width: 100%;
     flex-direction: column;
+    margin: 40px;
 }
 
+#form-auth {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 .title-form {
-    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    overflow-wrap: break-word;
+}
 
+.sous-titre-form {
+    margin-bottom: 50px;
+    font-family: 'Nunito', sans-serif;
+    color: #a2a2a2 ;
+    overflow-wrap: break-word;
+}
+#form-register > input, #form-connection > input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+#form-register > label, #form-connection > label {
+    margin-bottom: 5px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: #a2a2a2;
+    font-size: 14px;
 }
 
 .control {
@@ -535,6 +590,37 @@ article {
 
     #contenu-unique-article {
        margin: 0 60px;
+    }
+
+    #inscription-button {
+        width: 105px;
+        border: 1px solid white;
+        border-radius: 3px;
+        margin: 10px 2Px;
+        padding: 8px;
+        background: black;
+        cursor: pointer;
+        color: white;
+    }
+
+    #connexion-button {
+        width: 105px;
+        border: 1px solid black;
+        border-radius: 3px;
+        margin: 10px 2Px;
+        padding: 6px;
+        background: white;
+        cursor: pointer;
+        color: black;
+    }
+
+    /* FORM REGISTER & CONNECTION */
+
+    .container-div {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        margin-top: 20px;
     }
 
 }

@@ -1,11 +1,42 @@
 <?php session_start(); ?>
-<?php require_once 'src/User.php';
+<?php
+require_once 'src/User.php';
+require_once 'src/Article.php';
 $bio = new User();
-$userBio = $bio->getBio();
+$article = new Article();
+?>
+<?php
+
+$new_info = new User();
+$new_info->getAllInfos();
+var_dump($new_info);
+
+if ((!empty($_POST)) && $_POST['newlogin']) {
+    $newlogin = htmlspecialchars($_POST['newlogin']);
+    $new_info->setLogin($newlogin);
+}
+
+if ((!empty($_POST)) && $_POST['prenom']) {
+    $newprenom = htmlspecialchars($_POST['prenom']);
+    $new_info->setPrenom($newprenom);
+}
+
+if ((!empty($_POST)) && $_POST['nom']) {
+    $newnom = htmlspecialchars($_POST['nom']);
+    $new_info->setNom($newnom);
+}
+
+if ((!empty($_POST)) && $_POST['biographie']) {
+    $newBio = htmlspecialchars($_POST['biographie']);
+    $new_info->setBio($newBio);
+}
+
+if ((!empty($_POST)) && $_POST['newpassword']) {
+    $newpassword = htmlspecialchars($_POST['newpassword']);
+    $new_info->setPassword($newpassword);
+}
 
 ?>
-
-
 
 <!doctype html>
 <html lang="fr">
@@ -27,7 +58,7 @@ $userBio = $bio->getBio();
     <label for="prenom">Prénom</label>
     <input type="text" name="prenom" id="prenom" placeholder="<?php echo $_SESSION['prenom'] ?>" minlength="3">
     <label for="biographie">Biographie
-        <textarea name="biographie" placeholder="<?php echo $userBio ?>"></textarea>
+        <textarea name="biographie" placeholder="<?php echo $new_info->getBio() ?>"></textarea>
     </label>
     <label for="newpassword">Mot de passe</label>
     <input type="password" name="newpassword" id="newpassword" placeholder="mot de passe" minlength="3">
@@ -37,41 +68,4 @@ $userBio = $bio->getBio();
 </form>
 </body>
 </html>
-
-<?php
-
-$new_info = new User();
-$new_info->getAllInfos();
-
-if ((!empty($_POST)) && $_POST['newlogin']) {
-    $newlogin = htmlspecialchars($_POST['newlogin']);
-    $update = new User();
-    $update->setLogin($newlogin);
-}
-
-if ((!empty($_POST)) && $_POST['prenom']) {
-    $newprenom = htmlspecialchars($_POST['prenom']);
-    $updatePrenom = new User();
-    $updatePrenom->setPrenom($newprenom);
-}
-
-if ((!empty($_POST)) && $_POST['nom']) {
-    $newnom = htmlspecialchars($_POST['nom']);
-    $updateNom = new User();
-    $updateNom->setNom($newnom);
-}
-
-if ((!empty($_POST)) && $_POST['biographie']) {
-    $newBio = htmlspecialchars($_POST['biographie']);
-    $updateBio = new User();
-    $updateBio->setBio($newBio);
-}
-
-if ((!empty($_POST)) && $_POST['newpassword']) {
-    $newpassword = htmlspecialchars($_POST['newpassword']);
-    $updatePW = new User();
-    $updatePW->setPassword($newpassword);
-}
-
-?>
 

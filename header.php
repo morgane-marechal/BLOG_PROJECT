@@ -8,26 +8,22 @@
                     <li><a href="index.php">Accueil</a></li>
                     <?php if (isset($_SESSION['utilisateur'])) { ?>
                         <li><a href="profil.php">Profil</span></a></li>
-                        <li><a href="article_form.php">Rédiger</a></li>
                     <?php } ?>
-                    <li><a href="blog.php">Blog</a></li>
+                <li><a href="blog.php">Blog</a></li>
                 <?php if (!isset($_SESSION['utilisateur'])) : ?>
                     <div class="container-buttons-nav">
-                        <a href="connexion.php">
-                            <button class="btn-connection">Se connecter</button>
-                        </a>
-                        <a href="inscription.php">
-                            <button class="btn-register">S'inscrire</button>
+                        <a href="authentification.php">
+                            <button class="btn-register">S'authentifier</button>
                         </a>
                     </div>
                 <?php endif; ?>
-                    <?php if ((isset($_SESSION['rangs']) === ('admin' || 'moderateur')) && (!empty($_SESSION['rangs']))) { ?>
-                        <li><a href=redaction.php>Rédaction</span></a></li>
-                    <?php } ?>
+                <?php if ((isset($_SESSION['rangs']) && $_SESSION['rangs'] === 'administrateur' || $_SESSION['rangs'] === 'moderateur')) { ?>
+                    <li><a href="article_form.php">Rédaction</span></a></li>
+                <?php } ?>
 
-                    <?php if ((isset($_SESSION['rangs']) === 'admin') && (!empty($_SESSION['rangs']))) { ?>
-                        <li><a href=administration.php>Administration</span></a></li>
-                    <?php } ?>
+                <?php if ((isset($_SESSION['rangs']) && $_SESSION['rangs'] === 'administrateur') && (!empty($_SESSION['rangs']))) { ?>
+                    <li><a href=admin.php>Administration</span></a></li>
+                <?php } ?>
                 <?php if (isset($_SESSION['utilisateur']) && !empty($_SESSION['utilisateur'])) { ?>
                     <li><a href=deconnexion.php>
                             <button class="btn-deconnection">Déconnexion</button>
@@ -50,11 +46,8 @@
                 <li><a href="blog.php">Blog</a></li>
                 <?php if (!isset($_SESSION['utilisateur'])) : ?>
                     <div class="container-buttons-nav">
-                        <a href="inscription.php">
-                            <button class="btn-register">S'inscrire</button>
-                        </a>
-                        <a href="connexion.php">
-                            <button class="btn-connection">Se connecter</button>
+                        <a href="authentification.php">
+                            <button class="btn-register">S'authentifier</button>
                         </a>
                     </div>
                 <?php endif; ?>
