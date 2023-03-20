@@ -282,10 +282,7 @@ article {
 .container-image-article {
     width: 100%;
 }
-.image-article{
-    max-width: 100%;
-    margin-bottom: 10px;
-}
+
 .contenu-article {
     font-family: 'Nunito', sans-serif;
     font-weight: lighter;
@@ -378,7 +375,7 @@ article {
 }
 
 #image-article-unique {
-    max-width: 350px;
+    max-width: 1000px;
 }
 
 #container-info {
@@ -423,8 +420,8 @@ article {
 }
 
 #comments-form > textarea {
-    background-color: #e1e1e1;
-    border: 1px solid #e1e1e1;
+    background-color: #efefef;
+    border: 1px solid #efefef;
     border-radius: 5px;
     padding: 10px;
 }
@@ -448,6 +445,8 @@ article {
 .commentaire {
     justify-content: center;
     display: flex;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 10px;
 }
 
 /* FORM CONNECTION */
@@ -637,7 +636,7 @@ article {
     }
 
     #contenu-unique-article {
-       margin: 0 60px;
+       margin: 0 7rem;
     }
 
     #inscription-button {
@@ -681,5 +680,19 @@ article {
         flex-direction: column;
     }
 
+
+    /* ARTICLE UNIQUE */
+
+    #auteur {
+        margin: 10px 7rem;
+    }
+
+    #content-commentaires {
+        margin: 2rem 7rem;
+    }
+
+    #info-unique-article {
+        margin: 0 5rem;
+    }
 
 }
