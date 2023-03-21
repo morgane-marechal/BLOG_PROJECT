@@ -12,7 +12,7 @@ class Comments
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        strpos($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false ? $password_db = 'root' : $password_db = 'root';
+        strpos($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false ? $password_db = 'root' : $password_db = '';
 
         try {
             $options =
@@ -47,8 +47,10 @@ class Comments
     /* Méthode qui permet d'afficher les commentaires d'un article */
     public function displayComments($id)
     {
-        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article
-                FROM commentaires  
+        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article, utilisateurs.id AS id_user, utilisateurs.prenom, utilisateurs.nom 
+                FROM commentaires 
+                INNER JOIN utilisateurs
+                ON commentaires.id_utilisateur = utilisateurs.id
                 WHERE commentaires.id_article = $id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();

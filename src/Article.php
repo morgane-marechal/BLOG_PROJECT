@@ -20,7 +20,7 @@ class Article
     {
         $db_dsn = 'mysql:host=localhost; dbname=blog_js';
         $username = 'root';
-        strpos($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false ? $password_db = 'root' : $password_db = 'root';
+        strpos($_SERVER['HTTP_USER_AGENT'], 'Macintosh') !== false ? $password_db = 'root' : $password_db = '';
 
         try {
             $options =
