@@ -198,5 +198,26 @@ class Article
         $delete= $this->db->prepare("DELETE from articles WHERE id = '$idDelete'");
         $delete->execute();
     }
+
+    public function getLastArticles()
+    {
+        $managearticles = "SELECT articles.id, 
+                articles.titre, 
+                articles.contenu, 
+                articles.image, 
+                articles.categorie,
+                articles.image,
+                articles.date,
+                utilisateurs.nom,
+                utilisateurs.prenom
+                FROM articles
+                INNER JOIN utilisateurs 
+            ON articles.id_utilisateur = utilisateurs.id ORDER BY date DESC LIMIT 3";
+        $sql_select = $this->db->prepare($managearticles);
+        $sql_select->execute();
+        $results = $sql_select->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+
+    }
 }
 ?>  

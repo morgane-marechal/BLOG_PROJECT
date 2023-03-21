@@ -419,14 +419,15 @@ body {
 }
 
 .titre_commentaire, .login_commentaire, .contenu_commentaire{
-    margin: 0%0%1%0%;
+    padding: 2%3%2%3%;
+    text-align: justify;
 }
 
 .del-comment {
     background-color: #232419;
     color: #fff;
     border: solid 1px;
-    padding: 1%;
+    padding: 2%;
     margin: 1%0%1%0%;
     text-transform: uppercase;
     transition: background-color 1s ease;
@@ -439,19 +440,37 @@ body {
     cursor: pointer;
 }
 
-@media (orientation: portrait) {
+
+
+@media (orientation:portrait) {
     header {
         width: 100%;
-        height: 150px;
+        height: 160px;
+        padding: 30px 0px 30px 30;
         background: #ffffff;
         border-bottom: 1px solid black;
         border-top: 2px solid gray;
-        padding-top:30px;
+
+    }
+
+    #container-list-nav .burger{
+        width:200px;
+    }
+
+    .bar{
+        display:block;
+        width: 100px;
+        height: 5px;
+        margin: 10px auto;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: #232419;
     }
 
     .burger {
         display: block;
         margin:0px 30px 60px 30px;
+        padding:5%0%0%0%;
     }
 
     .bar{
@@ -493,8 +512,15 @@ body {
     }
 
 
+    .ul_nav_desktop {
+        display: none;
+        list-style: none;
+        font-family: 'Nunito', sans-serif;
+    }
+
     .ul_nav li {
         align-self: center;
+        
     }
 
     .ul_nav li a {
@@ -514,12 +540,11 @@ body {
     .btn-deconnection {
         width: 400px;
         font-size: 1em;
-        border: 1px solid white;
-        border-radius: 3px;
-        background: black;
-        cursor: pointer;
-        color: white;
+        color: black;
+        font-size: 4em;
     }
+
+
 
     .btn-deconnection:hover {
         border: 1px solid black;
@@ -528,13 +553,280 @@ body {
         transition: 0.3s ease-in;
     }
 
-    .desktop-align {
+
+    ::-webkit-scrollbar {
+        background-color: rgb(5, 5, 5);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background-color: #232419;
+    }
+    
+    #buttons-admin {
         display: flex;
-        justify-content: start;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    .btn-register,
+    .btn-connection,
+    .btn-deconnection {
+        padding: 8px;
+        margin: 0;
     }
 
-    #contenu-unique-article {
-        margin: 0 60px;
+    #utilisateurs-button,
+    #articles-button,
+    #commentaires-button {
+        border: solid 1px  #232419;
+        padding:2%;
+        font-size: 4em;
+        height:300px;
+        cursor: pointer;
+        width: 90%;
+        margin:3%5%3%5%;
+    }
+    
+    #utilisateurs-button:hover,
+    #articles-button:hover,
+    #commentaires-button:hover {
+        width: 90%;
+        padding: 1%0%1%0%;
+        color: #ffffff;
+        border: solid 1px;
+        background-color: #232419;
+        font-size: 4em;
+        cursor: pointer;
+        margin:3%5%3%5%;
+    }
+    
+    #user-place h2 {
+        text-align: center;
+        margin: 2%;
+        text-transform: uppercase;
+    }
+    
+    /*AFFICHAGE DES UTILISATEURS DANS PANNEAU ADMIN*/
+    
+    .user {
+        border: solid 1px;
+        width: 90%;
+        margin: 2%5%2%5%;
+        padding: 2%0%2%5%;
+        font-size: 1.2em;
+    }
+    
+    .user .id,
+    .user .login,
+    .user .nom,
+    .user .prenom,
+    .user .rang {
+        margin: 0%0%1%0%;
+    }
+    
+    .user select {
+        background-color: #232419;
+        margin: 0%2%0%0%;
+        padding: 1%3%1%3%;
+        color: #ffffff;
+        font-size: 2.5em;
+    }
+    
+    .user .id_user {
+        background-color: black;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        width: 5%;
+        border: none;
+        padding: 1%;
+    }
+    
+    .user .del {
+        background-color: #232419;
+        color: #fff;
+        border: solid 1px;
+        padding: 1%3%1%3%;
+        font-size: 2.5em;
+        margin:2%0%2%0%;
+        transition: background-color 0.5s ease;
+    }
+    
+    .user .del:hover {
+        background-color: rgb(75, 9, 9);
+        cursor: pointer;
+        border: none;
+    }
+    
+    .user .update {
+        background-color: #232419;
+        color: #fff;
+        border: solid 1px;
+        padding: 1%3%1%3%;
+        font-size: 2.5em;
+        transition: background-color 0.5s ease;
+    }
+    
+    .user .update:hover {
+        background-color: black;
+        cursor: pointer;
+        border: none;
+    }
+    
+    #form_role {
+        padding: 0%;
+        margin: 1%0%1%0%;
+    }
+    
+    .admin-article {
+        width: 98%;
+        padding: 1%;
+        border: solid 1px;
+        margin: 1%;
+    }
+    
+    .updateArticle {
+        background-color: #232419;
+        color: #fff;
+        border: solid 1px;
+        padding: 1%;
+        margin: 1%0%2%0%;
+        text-transform: uppercase;
+    }
+    
+    .updateArticle:hover {
+        background-color: #000000;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    
+    .del-article {
+        background-color: #232419;
+        color: #fff;
+        border: solid 1px;
+        padding: 1%;
+        margin: 0%0%2%1%;
+        text-transform: uppercase;
+    }
+    
+    .del-article:hover {
+        background-color: #000000;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    
+    .manage-content {
+        width: 100%;
+    }
+    
+    /*AFFICHAGE DES ARTICLES DANS PANNEAU ADMIN*/
+    
+    .admin-article{
+        margin-top: 5%;
+    }
+    .admin-article .titre_article {
+        background-color: #373828;
+        color: #ffffff;
+        padding: 1%;
+        margin: 1%;
+        border: none;
+        font-size: 2.5em;
+        transition: border 1s ease;
+    }
+
+    #user-place h2{
+        font-size:2em;
+    }
+    
+    .admin-article .titre_article:hover {
+        border: solid 1px white;
+        cursor: pointer;
+    }
+    
+    .admin-article .manage-content {
+        background-color: #373828;
+        color: #ffffff;
+        padding: 1%2%1%2%;
+        margin: 1%3%1%3%;
+        width: 94%;
+        height: 25%;
+        border: none;
+    }
+    
+    .admin-article select {
+        background-color: #373828;
+        color: #ffffff;
+        padding: 1%;
+        margin: 1%3%1%2%;
+        font-size: 2.8em;
+        border: none;
+        cursor: pointer;
+    }
+
+    .admin-article label{
+        font-size: 2.8em;
+        font-family: 'Nunito', sans-serif;
+        margin:4%0%2%5%;
+    }
+    .admin-article .manage-content:hover {
+        border: solid 1px white;
+        cursor: pointer;
+    }
+    
+    .updateArticle {
+        transition: background-color 1s ease;
+        font-size: 2em;
+        margin:2%;
+    }
+    
+    .updateArticle:hover {
+        background-color: #000000;
+        border: none;
+    }
+    
+    .del-article {
+        transition: background-color 1s ease;
+        font-size: 2.5em;
+    }
+    
+    .del-article:hover {
+        background-color: rgb(75, 9, 9);
+        border: none;
+    }
+    
+    /*AFFICHAGE DES COMMENTAIRES DANS PANNEAU ADMIN*/
+    
+    .id_comment {
+        background-color: #232419;
+        color: #ffffff;
+        padding: 2%;
+        margin: 2%;
+        border: solid 1px white;
+        font-size: 1.3em;
+        transition: border 1s ease;
+    }
+    
+
+    .titre_commentaire, .login_commentaire, .contenu_commentaire{
+        text-align: justify;
+    }
+    
+    .del-comment {
+        background-color: #232419;
+        color: #fff;
+        border: solid 1px;
+        padding: 1%;
+        text-transform: uppercase;
+        transition: background-color 1s ease;
+        font-size: 2.5em;
+        margin:2%0%2%0%;
+    }
+    
+    .del-comment:hover {
+        background-color: rgb(75, 9, 9);
+        border: solid 1px #232419;
+        color: #ffffff;
+        cursor: pointer;
     }
 
     #buttons-admin {
