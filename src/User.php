@@ -142,6 +142,7 @@ class User
         $_SESSION['nom'] = $result['nom'];
         $_SESSION['prenom'] = $result['prenom'];
         $_SESSION['password'] = $result['password'];
+        $_SESSION['bio'] = $result['bio'];
     }
 
     //Méthode update login

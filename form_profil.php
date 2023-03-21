@@ -59,7 +59,7 @@ if ((!empty($_POST)) && $_POST['newpassword']) {
         <label for="prenom">Prénom</label>
         <input type="text" name="prenom" id="prenom" placeholder="<?php echo $_SESSION['prenom'] ?>" minlength="3">
         <label for="biographie">Biographie</label>
-        <textarea name="biographie" rows="10" placeholder="<?php echo $new_info->getBio() ?>"></textarea>
+        <textarea name="biographie" rows="10" placeholder="<?php echo $_SESSION['bio'] ?>"></textarea>
         <label for="newpassword">Mot de passe</label>
         <input type="password" name="newpassword" id="newpassword" placeholder="mot de passe" minlength="3">
 
