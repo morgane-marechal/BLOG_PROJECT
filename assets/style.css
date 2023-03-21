@@ -435,10 +435,15 @@ textarea {
 }
 
 .commentaire {
-    justify-content: center;
     display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
     font-family: 'Nunito', sans-serif;
-    margin-top: 10px;
+    font-size: 15px;
+}
+
+.info-commentaire{
+    margin-bottom: 5px;
 }
 
 /* FORM CONNECTION */
@@ -705,6 +710,13 @@ textarea {
 
     #info-unique-article {
         margin: 0 5rem;
+    }
+
+    .info-commentaire {
+        font-family: 'Nunito', sans-serif;
+        font-size: .85rem;
+        font-weight: bold;
+        color: #a2a2a2;
     }
 
 }

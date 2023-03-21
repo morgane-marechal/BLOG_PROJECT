@@ -17,10 +17,21 @@ fetch(`article.php?articleid=${param.get('id')}`)
     .then((data) => {
         for (let i = 0; i < data.length; i++) {
             const div = document.createElement('div');
-            const spanInfo = document.createElement('span');
+            const spanInfo = document.createElement('div');
+            const contentComment = document.createElement('div');
+
+
             div.classList.add('commentaire');
-            div.innerHTML = data[i]['contenu'];
+            contentComment.classList.add('content-commentaire')
+            spanInfo.classList.add("info-commentaire");
+
+            spanInfo.innerHTML = "Publié le " + data[i]['date'] + " par " +  data[i]['prenom'] + " " + data[i]['nom'];
+            contentComment.innerHTML = data[i]['contenu'];
+
             commentsDisplay.appendChild(div);
+            div.appendChild(spanInfo);
+            div.appendChild(contentComment);
+
         }
     })
 
@@ -38,14 +49,24 @@ commentsForm.addEventListener('submit', (ev) => {
         body: commentInput
     })
         .then((response) => {
-            console.log(commentInput.get('commentaire'))
             return commentInput.get('commentaire')
         })
         .then((data) => {
             const divCommentaire = document.createElement('div');
+            const spanInfo = document.createElement('span');
+            const contentComment = document.createElement('div');
             divCommentaire.classList.add('commentaire');
-            divCommentaire.textContent = data;
+            contentComment.classList.add('content-commentaire');
+            spanInfo.classList.add("info-commentaire");
+            console.log(data)
+            spanInfo.innerHTML = "Publié le " + new Date().toLocaleString() + " par " + "vous";
+            contentComment.innerHTML = data;
 
+            divCommentaire.appendChild(spanInfo);
+            divCommentaire.appendChild(contentComment);
+
+            commentsDisplay.appendChild(divCommentaire);
         })
+
     })
 

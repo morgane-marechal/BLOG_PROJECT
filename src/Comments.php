@@ -47,8 +47,10 @@ class Comments
     /* Méthode qui permet d'afficher les commentaires d'un article */
     public function displayComments($id)
     {
-        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article
-                FROM commentaires  
+        $sql = "SELECT commentaires.id, commentaires.contenu, commentaires.date, commentaires.id_utilisateur, commentaires.id_article, utilisateurs.id AS id_user, utilisateurs.prenom, utilisateurs.nom 
+                FROM commentaires 
+                INNER JOIN utilisateurs
+                ON commentaires.id_utilisateur = utilisateurs.id
                 WHERE commentaires.id_article = $id";
         $sql_select = $this->db->prepare($sql);
         $sql_select->execute();
