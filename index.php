@@ -12,4 +12,11 @@
     <?php
     require('header.php');
     ?>
+    <div id="home_image_place">
+        <img id="home_image" src="assets/work-space.jpg" alt="Desk for work"> 
+        <div id="articles_vignette_place">
+            
+        </div>
+    </div>
+
 </body>

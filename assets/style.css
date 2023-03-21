@@ -566,6 +566,12 @@ textarea {
     font-size: 10px;
 }
 
+    #home_image{
+        width:100%;
+        position:absolute;
+        Z-index:-99;
+    }
+
 /* DESKTOP */
 
 @media (min-width: 700px) {
@@ -700,6 +706,12 @@ textarea {
 
     #info-unique-article {
         margin: 0 5rem;
+    }
+    
+    /*PAGE INDEX*/
+
+    #home_image{
+        height:95%;
     }
 
 }
